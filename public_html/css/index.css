@@ -1,0 +1,48 @@
+.gallery{
+    margin: auto;
+    width: 60rem;
+    height: 30rem;
+    background-color: rgb(220,220,220);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.gallery__pane{
+    height: 100%;
+}
+
+.gallery__prev-btn, .gallery__next-btn{
+    height: 100%;
+    width: 3%;
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 3rem;
+    color: white;
+    cursor: pointer;
+}
+
+.gallery__prev-btn:hover, .gallery__next-btn:hover{
+    color: rgb(220, 220, 220);
+}
+
+.gallery__prev-btn:active, .gallery__next-btn:active{
+    cursor: default;
+    color: white;
+}
+
+.gallery__prev-btn{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.gallery__next-btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
