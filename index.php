@@ -1,7 +1,3 @@
-<?php
-    require_once('config/config.php');
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,8 +11,10 @@
     <h2>Галерея</h2>
     <div class='gallery'>
         <div class='gallery__prev-btn'>&#9001;</div>
-        <img src="data/img/1.jpeg" class='gallery__pane' alt="место для изображения">
+        <img class='gallery__pane' alt="место для изображения">
         <div class='gallery__next-btn'>&#9002;</div>
     </div>
+
+    <script type='text/javascript' src='public_html/js/index.js'></script>
 </body>
 </html>

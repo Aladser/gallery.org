@@ -1,8 +1,4 @@
 <?php
-define('FILES', 'data/img');
 
-// файлы
-$files = scandir(FILES);
-array_splice($files,0, 2);
-echo 'Файлы: ';
-print_r($files);
+define('FILES', dirname(__DIR__, 1).'\data\img');
+define('IMAGE_INDEX', dirname(__DIR__, 1).'\data\image_index.data');
