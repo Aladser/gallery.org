@@ -20,7 +20,7 @@ document.querySelector('#loginWindow__sendBtn').onclick = ()=>{
         // POST-запрос
         const params = new URLSearchParams();
         params.set('login', loginInput.value);
-        params.set('pass', passInput.value);
+        params.set('password', passInput.value);
         fetch('../engine/db.php', {method: 'POST', body: params}).then(response => response.text()).then(data => console.log(data));
     }
 }

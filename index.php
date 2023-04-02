@@ -19,10 +19,7 @@
         <div class='gallery__next-btn'>&#9002;</div>
     </div>
 
-    <?php 
-        require_once('views/login_view.php');
-        require_once('engine/db_connect.php');  
-    ?>
+    <?php require_once('views/login_view.php');?>
     <script type='text/javascript' src='public_html/js/index.js'></script>
     <script type='text/javascript' src='public_html/js/login.js'></script>
 </body>
