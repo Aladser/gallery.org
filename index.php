@@ -1,3 +1,7 @@
+<?php
+    require_once('views/login_view.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,10 +11,12 @@
     <title>Галерея</title>
     <link rel="stylesheet" href="public_html/css/reset_cs.css">
     <link rel="stylesheet" href="public_html/css/index.css">
+    <link rel="stylesheet" href="public_html/css/login.css">
+    <link rel="stylesheet" href="public_html/css/modal.css">
 </head>
 <body>
     <h2 class='gallery-header'>Галерея</h2>
-    <input type="button" class='gallery__login-btn' value="Вход">
+    <input type="button" class='gallery__login-btn' id='login-btn' value="Вход">
     <div class='gallery'>
         <div class='gallery__prev-btn'>&#9001;</div>
         <img class='gallery__pane' alt="место для изображения">
@@ -18,5 +24,6 @@
     </div>
 
     <script type='text/javascript' src='public_html/js/index.js'></script>
+    <script type='text/javascript' src='public_html/js/login.js'></script>
 </body>
 </html>

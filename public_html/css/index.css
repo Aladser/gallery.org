@@ -6,6 +6,7 @@ body{
 .gallery-header{
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color:rgb(58, 179, 249);
+    margin-top: 1rem;
 }
 
 .gallery__login-btn{

@@ -1,0 +1,47 @@
+.loginWindow{
+    width: 26rem;
+    height: 13rem;
+}
+
+.loginWindow__formRow{
+    width: 20rem;
+    margin: auto;
+    margin-bottom: 5px;
+    display: flex;
+}
+
+.loginWindow__label{
+    width: 6rem;
+    text-align: left;
+    padding: 0.4rem;
+    padding-right: 1rem;
+}
+.loginWindow__input{
+    width: 80%;
+}
+
+.loginWindow__btnRow{
+    padding: 1vh 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.loginWindow__btn{
+    background-color: white;
+    border: 1px solid grey;
+    width: 6.5rem;
+    padding: 0.4vw;
+    cursor: pointer;
+}
+
+.loginWindow__btn:hover:not(:disabled){opacity: 0.5;}
+.loginWindow__btn:active{
+    cursor: default;
+}
+
+.loginWindow__error{
+    margin-top: 1vh;
+    text-align: center;
+    color: red;
+    visibility: hidden;
+}
