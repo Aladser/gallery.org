@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="public_html/img/icon.png">
     <title>Галерея</title>
+    <link rel="stylesheet" href="public_html/css/reset_cs.css">
     <link rel="stylesheet" href="public_html/css/index.css">
 </head>
 <body>
-    <h2>Галерея</h2>
+    <h2 class='gallery-header'>Галерея</h2>
+    <input type="button" class='gallery__login-btn' value="Вход">
     <div class='gallery'>
         <div class='gallery__prev-btn'>&#9001;</div>
         <img class='gallery__pane' alt="место для изображения">

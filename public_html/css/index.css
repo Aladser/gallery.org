@@ -1,12 +1,38 @@
 body{
     text-align: center;
+    position: relative;
+}
+
+.gallery-header{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color:rgb(58, 179, 249);
+}
+
+.gallery__login-btn{
+    position: absolute;
+    top: 0rem;
+    right: 1rem;
+    width: 6rem;
+    height: 3rem;
+    background-color: white;
+    color: rgb(58, 179, 249);
+    border: 1px solid rgb(58, 179, 249);
+}
+.gallery__login-btn:hover{
+    cursor: pointer;
+    color: white;
+    background-color: rgb(58, 179, 249);
+}
+.gallery__login-btn:active{
+    cursor: default;
+    background-color: white;
+    color: rgb(58, 179, 249);
 }
 
 .gallery{
     margin: auto;
     width: 60rem;
     height: 30rem;
-    background-color: rgb(220,220,220);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,7 +46,7 @@ body{
 .gallery__prev-btn, .gallery__next-btn{
     height: 100%;
     width: 3%;
-    background-color: grey;
+    background-color: rgb(58, 179, 249);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,3 +76,4 @@ body{
     top: 0;
     right: 0;
 }
+
