@@ -57,7 +57,7 @@ body{
 }
 
 .gallery__prev-btn:hover, .gallery__next-btn:hover{
-    color: rgb(220, 220, 220);
+    color: rgb(230, 230, 230);
 }
 
 .gallery__prev-btn:active, .gallery__next-btn:active{
