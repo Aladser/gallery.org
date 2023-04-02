@@ -16,7 +16,6 @@ const loginInput = document.querySelector('.loginWindow__loginInput');
 const passInput = document.querySelector('.loginWindow__passwordInput');
 document.querySelector('#loginWindow__sendBtn').onclick = ()=>{
     if(loginInput.value !== '' && passInput.value !== '') {
-        console.log('отправил');
         // POST-запрос
         const params = new URLSearchParams();
         params.set('login', loginInput.value);
