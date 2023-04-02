@@ -49,21 +49,24 @@
             if(isAuthorization($login, $password)){
                 // Генерируем случайное число и шифруем его
                 $hash = md5(generateCode(10));
-                $query = $dbConnection->prepare("UPDATE users SET user_hash=:hash WHERE user_login=:user_login");
-                $query->execute(['hash'=>$hash, 'user_login' => $login]);
+                $query = $dbConnection->prepare("UPDATE users SET user_hash=:user_hash WHERE user_login=:user_login");
+                $query->execute(['user_hash'=>$hash, 'user_login' => $login]);
                 // Ставим куки
-                setcookie("login", $login, time()+60*60*24*30, "/");
-                setcookie("hash", $hash, time()+60*60*24*30, "/", '', false, true); // httponly !!! 
-                echo 'авторизован';
+                setcookie('login', $login, time()+60*60*24);
+                setcookie('hash', $hash, time()+60*60*24);
+                //$rslt = require_once('check.php');
+                $rslt = 'auth';
+                $_SESSION['auth'] = true;
             }
             else {
-                echo 'неверный пароль';
+                $rslt = 'wrongpass';
             }
         }
         else {
-            echo 'пользователь не существует';
+            $rslt = 'nouser';
         }
 
+        echo $rslt;
         $dbConnection = null;
     }
 ?>

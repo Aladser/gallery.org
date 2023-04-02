@@ -11,7 +11,7 @@ openLoginWindowBtn.onclick = () => {
     else location.href = '../index.php';
 }
 
-//***** аутентификация *****//
+//***** авторизация *****//
 const loginInput = document.querySelector('.loginWindow__loginInput');
 const passInput = document.querySelector('.loginWindow__passwordInput');
 document.querySelector('#loginWindow__sendBtn').onclick = ()=>{
