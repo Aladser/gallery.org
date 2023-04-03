@@ -30,12 +30,12 @@
         <div class='gallery__prev-btn'>&#9001;</div>
         <img class='gallery__pane'>
         <div class='gallery__next-btn'>&#9002;</div>
-        <?php if(isset($_SESSION['auth'])): ?>
-            <input type="button" class='gallery-btn gallery__delete-btn' value="Удалить">
-        <?php endif; ?>
     </container>
 
-    <?php if(isset($_SESSION['auth'])) include 'views/upload_file_view.php'; ?>
+    <?php if(isset($_SESSION['auth'])): ?>
+        <?php include 'views/upload_file_view.php'; ?>
+        <input type="button" class='gallery-btn gallery__delete-btn' value="Удалить">
+    <?php endif; ?>
 
     <?php require_once('views/login_view.php'); ?>
     <script type='text/javascript' src='public_html/js/index.js'></script>
