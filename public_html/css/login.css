@@ -1,3 +1,5 @@
+.hidden{visibility: hidden;}
+
 .loginWindow{
     width: 26rem;
     height: 13rem;
@@ -40,8 +42,8 @@
 }
 
 .loginWindow__error{
-    margin-top: 1vh;
+    margin-top: -0.8rem;
     text-align: center;
     color: red;
-    visibility: hidden;
 }
+

@@ -1,5 +1,6 @@
 <?php
     require_once(dirname(__DIR__, 1).'/config/config.php');
+    session_start();
 
     // генерация случайной строки
     function generateCode($length=6) {
@@ -56,7 +57,7 @@
                 setcookie('hash', $hash, time()+60*60*24);
                 //$rslt = require_once('check.php');
                 $rslt = 'auth';
-                $_SESSION['auth'] = true;
+                $_SESSION['auth'] = 1;
             }
             else {
                 $rslt = 'wrongpass';

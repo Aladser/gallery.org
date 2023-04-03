@@ -20,6 +20,14 @@ document.querySelector('#loginWindow__sendBtn').onclick = ()=>{
         const params = new URLSearchParams();
         params.set('login', loginInput.value);
         params.set('password', passInput.value);
-        fetch('../engine/db.php', {method: 'POST', body: params}).then(response => response.text()).then(data => console.log(data));
+        fetch('../engine/db.php', {method: 'POST', body: params}).then(response => response.text()).then(data => {
+            if(data !== 'auth') {
+                loginWindowError.classList.remove('hidden');
+                loginWindowError.innerHTML = data === 'wrongpass' ? 'Неверный пароль' : 'Пользователь не найден';
+            }
+            else{
+                location.href = '/index.php';
+            }
+        });
     }
 }

@@ -17,6 +17,6 @@
             <input type='button' class='loginWindow__btn' id='loginWindow__sendBtn' value='Войти'>
             <input type='button' class='loginWindow__btn' id='loginWindow__regBtn' value='Регистрация'>            
         </div>
-        <p class='loginWindow__error'>Ошибка</p>
+        <p class='loginWindow__error hidden'>Ошибка</p>
     </form></div>
 </section>
