@@ -24,7 +24,7 @@ const deleteBtn = document.querySelector('.gallery__delete-btn');
 if(deleteBtn){
     deleteBtn.addEventListener('click', ()=>{
         let file = document.querySelector('.gallery__pane').src;
-        fetch(`../../engine/delete_files.php?file=${file}`);
+        fetch(`../../engine/delete_files.php?file=${file}`).then(r => r.text()).then(data => console.log(data));
         location.href = '../../index.php';
     });
 }

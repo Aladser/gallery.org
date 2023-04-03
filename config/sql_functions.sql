@@ -5,3 +5,11 @@ create table users(
 	user_hash varchar(32) NOT NULL default '',
 	user_ip int(10) unsigned NOT NULL default '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
+
+create table images(
+    id int AUTO_INCREMENT PRIMARY KEY,
+	name varchar(250) UNIQUE
+) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
+
+alter table images change name image_path varchar(255); 
+alter table images change id image_id int auto_increment; 

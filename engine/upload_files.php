@@ -2,6 +2,7 @@
  
 require_once(dirname(__DIR__, 1).'/config/config.php');
 require_once(dirname(__DIR__, 1).'/data/images.php');
+session_start();
  
 if (!empty($_FILES)) {
     for ($i = 0; $i < count($_FILES['files']['name']); $i++) {
@@ -24,11 +25,25 @@ if (!empty($_FILES)) {
             $_SESSION['error'] = "$fileName: Ошибка загрузки файла";
             break;
         }
+        else{
+            // соединение с БД
+            try{
+                $dbConnection = new PDO("mysql:dbname=".NAME_DB."; host=".HOST_DB, USER_DB, PASS_DB);
+            }
+            catch(PDOException $e){
+                die($e->getMessage());
+            }
+
+            $query = $dbConnection->query("insert into images(image_path) values('$fileName')");
+            // установка изображения слайдера загруженным изображением
+            $files = getImages();
+            $index = array_search($fileName, $files);
+            file_put_contents(IMAGE_INDEX_FILE, "index = $index;");
+
+            $dbConnection = null;
+        }
     }
 
-    $files = getImages();
-    $index = array_search($fileName, $files);
-    file_put_contents(IMAGE_INDEX_FILE, "index = $index;");
     header('Location: ../index.php');
 }
  

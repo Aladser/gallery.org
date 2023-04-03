@@ -59,6 +59,7 @@ body{
     justify-content: center;
     align-items: center;
     position: relative;
+    border: 1px solid rgb(158, 219, 255);
 }
 
 .gallery__pane{
