@@ -7,8 +7,8 @@ document.querySelector('.loginWindow__closeBtn').onclick = () => loginInputSecti
 
 //Кнопка Открыть модальное окно/Выйти главной страницы
 openLoginWindowBtn.onclick = () => {
-    if(openLoginWindowBtn.value === 'Вход') loginInputSection.classList.add('modal_active');
-    else location.href = '../index.php';
+    if(openLoginWindowBtn.value === 'Войти') loginInputSection.classList.add('modal_active');
+    else location.href = '../../engine/logout.php';
 }
 
 //***** авторизация *****//

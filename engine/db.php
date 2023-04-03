@@ -58,6 +58,7 @@
                 //$rslt = require_once('check.php');
                 $rslt = 'auth';
                 $_SESSION['auth'] = 1;
+                $_SESSION['login'] = $login;
             }
             else {
                 $rslt = 'wrongpass';

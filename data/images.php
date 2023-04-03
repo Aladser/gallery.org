@@ -6,11 +6,16 @@ require_once(dirname(__DIR__, 1).'/config/config.php');
 function getImages(){
     $files = scandir(FILES);
     array_splice($files,0, 2);
-    return $files;
+    return count($files) !=0 ? $files : null;
 }
 
 // смена изображения слайдера
 if(isset($_GET['id'])){
+    if(is_null(getImages())) {
+        echo null;
+        exit;
+    }
+    
     $files = getImages();
     $img_index = file_get_contents(IMAGE_INDEX_FILE);
     $img_index = explode(' = ', $img_index)[1];
@@ -30,6 +35,5 @@ if(isset($_GET['id'])){
     else {
         $new_index = $img_index;
     }
-    
-    echo $files[$new_index];
+    echo  $files[$new_index];
 }

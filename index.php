@@ -1,6 +1,6 @@
 <?php 
-    session_start();
     require_once('config/config.php'); 
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -18,12 +18,21 @@
 </head>
 <body>
     <h2 class='gallery-header'>Галерея</h2>
-    <input type="button" class='gallery__login-btn' id='login-btn' value="Вход">
-    
+
+    <?php if(isset($_SESSION['auth'])): ?>
+        <input type="button" class='gallery-btn gallery__login-btn' id='login-btn' value='Выйти'>
+        <div class='gallery-login-label'><?=$_SESSION['login']?></div>
+    <?php else: ?>
+        <input type="button" class='gallery-btn gallery__login-btn' id='login-btn' value='Войти'>
+    <?php endif; ?>
+
     <container class='gallery'>
         <div class='gallery__prev-btn'>&#9001;</div>
-        <img class='gallery__pane' alt="место для изображения">
+        <img class='gallery__pane'>
         <div class='gallery__next-btn'>&#9002;</div>
+        <?php if(isset($_SESSION['auth'])): ?>
+            <input type="button" class='gallery-btn gallery__delete-btn' value="Удалить">
+        <?php endif; ?>
     </container>
 
     <?php if(isset($_SESSION['auth'])) include 'views/upload_file_view.php'; ?>
@@ -31,6 +40,5 @@
     <?php require_once('views/login_view.php'); ?>
     <script type='text/javascript' src='public_html/js/index.js'></script>
     <script type='text/javascript' src='public_html/js/login.js'></script>
-    <script type='text/javascript' src='public_html/js/upload_files.js'></script>
 </body>
 </html>
