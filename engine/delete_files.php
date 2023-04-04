@@ -1,6 +1,8 @@
 <?php
     require_once(dirname(__DIR__, 1).'/config/config.php');
     require_once(dirname(__DIR__, 1).'/data/images.php');
+    require_once('CommentsModel.php');
+    $cmtModel = new CommentsModel(HOST_DB, NAME_DB, USER_DB, PASS_DB);
     $img_index = intval(file_get_contents(IMAGE_INDEX_FILE)); // индекс показываемого изображения
 
     $files = getImages();
@@ -15,9 +17,10 @@
 
         $count = count($files);
         $filename = basename($_GET['file']);
-        $file =  UPLOAD_FILES.'\\'.$filename; // удаляем файл
-        $dbConnection->query("delete from images where image_path='$filename'"); // удаляем файл в бд
-        unlink($file);
+        $file =  UPLOAD_FILES.'\\'.$filename; 
+        $cmtModel->deleteComments($filename); // удаляем комментарии под изображением
+        $dbConnection->query("delete from images where image_path='$filename'"); // удаляем изображение из бд
+        unlink($file);// удаляем файл
         $count--;
         
         $dbConnection = null;

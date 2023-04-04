@@ -19,7 +19,7 @@
 </head>
 <body>
     <h2 class='gallery-header'>Галерея</h2>
-
+    <!-- кнопка войти-выйти -->
     <?php if(isset($_SESSION['auth'])): ?>
         <input type="button" class='gallery-btn gallery__login-btn' id='login-btn' value='Выйти'>
         <div class='gallery-login-name'><?=$_SESSION['login']?></div>
@@ -44,7 +44,7 @@
 
         </div>
         <?php if(isset($_SESSION['auth'])): ?>
-            <textarea  class='cmt-container__cmt' id='cmt-container__new-cmt'></textarea>
+            <textarea  class='cmt-container__text' id='cmt-container__new-cmt'></textarea>
             <br>
             <input type="button" class='gallery-btn cmt-container__btn' value='Отправить'>
         <?php endif; ?>

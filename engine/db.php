@@ -1,5 +1,6 @@
 <?php
     require_once(dirname(__DIR__, 1).'/config/config.php');
+    require_once(dirname(__DIR__, 1).'/data/images.php');
     require_once('UsersModel.php');
     require_once('CommentsModel.php');
     session_start();
@@ -81,6 +82,18 @@
     
     // список комментариев
     if(isset($_POST['comments'])){
-        print_r($_POST);
-        //print_r( $cmtModel->getComments($_POST['image']) );
+        // поиск текущего изображения
+        $files = getImages();
+        $img_index = file_get_contents(IMAGE_INDEX_FILE);
+        $img_index = explode(' = ', $img_index)[1];
+        $img_index = mb_substr($img_index, 0, strlen($img_index)-1);
+        $img_index = intval($img_index);
+        $currentFile = getImages($img_index)[$img_index];
+        // комментарии
+        $comments = $cmtModel->getComments($currentFile);
+        $rslt = array();
+        foreach ($comments as $row) {
+            array_push( $rslt, array($row['cmt_text'], $row['cmt_author'], $row['cmt_date']) );
+        }
+        echo json_encode($rslt);
     }

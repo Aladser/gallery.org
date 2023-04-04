@@ -30,11 +30,15 @@ class CommentsModel{
         $this->dbConnection = null;
     }
 
-    public function getComments($image_id){
+    public function getComments($image){
         $this->connect();
-        $sql = "select cmt_text, cmt_author, cmt_date from comments where image_id='$image_id'";
+
+        $query = $this->dbConnection->query("select image_id from images where image_path='$image'");
+        $id = $query->fetch(PDO::FETCH_ASSOC)['image_id'];
+        $sql = "select cmt_text, cmt_author, cmt_date from comments where image_id='$id'";
         $query = $this->dbConnection->query($sql);
-        return $sql;
+        return $query;
+
         $this->disconnect();
     }
 
@@ -43,14 +47,20 @@ class CommentsModel{
 
         $query = $this->dbConnection->query("select image_id from images where image_path='$image'");
         $id = $query->fetch(PDO::FETCH_ASSOC)['image_id'];
-        return $this->dbConnection->exec("insert into comments(image_id, cmt_author, cmt_text, cmt_date) values($id, '$author', '$text', '$date')");
+        $sql = "insert into comments(image_id, cmt_author, cmt_text, cmt_date) values($id, '$author', '$text', '$date')";
+        return $this->dbConnection->exec($sql);
 
         $this->disconnect();
     }
 
-    public function deleteComment($text, $author, $date){
+    public function deleteComments($image){
         $this->connect();
-        $this->dbConnection->query("insert into users(user_login, user_password) values('$login', '$password')");
+
+        $query = $this->dbConnection->query("select image_id from images where image_path='$image'");
+        $id = $query->fetch(PDO::FETCH_ASSOC)['image_id'];
+        $sql = "delete from comments where image_id=$id";
+        return $this->dbConnection->exec("delete from comments where image_id=$id");
+        
         $this->disconnect();
     }   
 }

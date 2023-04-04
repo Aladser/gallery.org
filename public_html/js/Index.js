@@ -1,28 +1,14 @@
 const imagePane = document.querySelector('.gallery__pane');
 const commentsList = document.querySelector('.cmt-container__list');
 
-// создание комментария
-function addComment(text, author, date){
-    let textArea = document.createElement('textarea');
-    textArea.className = 'cmt-container__cmt';
-    textArea.innerHTML = text;
-
-    let authorElem = document.createElement('div');
-    let dateElem = document.createElement('div');
-    authorElem.innerHTML = author;
-    dateElem.innerHTML = date;
-
-    commentsList.appendChild(authorElem);
-    commentsList.appendChild(dateElem);
-    commentsList.appendChild(textArea);
-}
-
-/** установка изображения слайдера и вывод комментариев
- * type: 1 - кнопка вперед, 0 - кнопка назад, 2 - текущее изображение на сервере
+/** установка изображения слайдера и комментариев к нему
+ * type: 1 - кнопка вперед, 0 - кнопка назад, 2 - текущее изображение
  */ 
 function setChangeFrontImage(type=2){
     return () => fetch(`../../data/images.php?id=true&type=${type}`).then(response => response.text()).then(data => {
         imagePane.src = data !== '' ? '../../data/img/'+data : '';
+        commentsList.querySelectorAll('.cmt-container__cmt').forEach(elem => elem.remove());
+        showComments();
     });
 }
 setChangeFrontImage()();
@@ -51,8 +37,39 @@ if(resetBtn){
 }
 
 // показ имени выбранного изображения
-if(fileNameInput){
-    fileNameInput.addEventListener('change', e => filenameLabel.innerHTML = e.target.files[0].name);
+if(fileNameInput){fileNameInput.addEventListener('change', e => filenameLabel.innerHTML = e.target.files[0].name);}
+
+/** создание комментария на html-странице */
+function addComment(text, author, date){
+    let comment = document.createElement('div');
+    comment.className = 'cmt-container__cmt';
+
+    let textArea = document.createElement('p');
+    textArea.innerHTML = text;
+    textArea.className = 'cmt-container__text';
+
+    let authorElem = document.createElement('div');
+    authorElem.className = 'cmt-container__author';
+    authorElem.innerHTML = author;
+
+    let dateElem = document.createElement('div');
+    dateElem .className = 'cmt-container__date';
+    dateElem.innerHTML = date;
+
+    comment.appendChild(textArea);
+    comment.appendChild(authorElem);
+    comment.appendChild(dateElem);
+    commentsList.appendChild(comment);
+}
+
+/** показать комментарии для текущего изображения */
+function showComments(){
+    const params = new URLSearchParams();
+    params.set('comments', true);
+    fetch('../engine/db.php', {method: 'POST', body: params}).then(response => response.text()).then(data => {
+        data = JSON.parse(data);
+        for(i=0; i<data.length; i++) addComment(data[i][0], data[i][1], data[i][2]);
+    });
 }
 
 // отправка нового комментария
@@ -60,7 +77,7 @@ const sendNewCmtBtn =  document.querySelector('.cmt-container__btn');
 if(sendNewCmtBtn){
     let newCmt = document.querySelector('#cmt-container__new-cmt');
     let author =  document.querySelector('.gallery-login-name');
-    document.querySelector('.cmt-container__btn').addEventListener('click', () => {
+    sendNewCmtBtn.addEventListener('click', () => {
         if(newCmt.value !== ''){
             // POST-запрос
             const params = new URLSearchParams();
@@ -81,12 +98,11 @@ if(sendNewCmtBtn){
             params.set('date', tableDate);
     
             fetch('../engine/db.php', {method: 'POST', body: params}).then(response => response.text()).then(data => {
+                console.log(data);
                 if(data === '1'){
                     addComment(newCmt.value, author.innerHTML, tableDate);
                     newCmt.value = '';
                 }
-                else
-                    location.href = 'Location: ../../index.php';
             });
         }
     });
