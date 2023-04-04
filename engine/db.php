@@ -1,11 +1,7 @@
 <?php
     require_once(dirname(__DIR__, 1).'/config/config.php');
     require_once(dirname(__DIR__, 1).'/data/images.php');
-    require_once('UsersModel.php');
-    require_once('CommentsModel.php');
     session_start();
-    $usersModel = new UsersModel(HOST_DB, NAME_DB, USER_DB, PASS_DB);
-    $cmtModel = new CommentsModel(HOST_DB, NAME_DB, USER_DB, PASS_DB);
 
     // авторизация
     function logIn($usersModel, $login){
@@ -14,6 +10,7 @@
         // Ставим куки
         setcookie('login', $login, time()+60*60*24);
         setcookie('hash', $usersModel->getUserHash($login), time()+60*60*24);
+        // защита выключена для простоты проекта
         //$rslt = require_once('check.php');
         $_SESSION['auth'] = 1;
         $_SESSION['login'] = $login;

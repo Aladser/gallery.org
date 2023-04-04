@@ -1,5 +1,6 @@
 const imagePane = document.querySelector('.gallery__pane');
 const commentsList = document.querySelector('.cmt-container__list');
+const loginNameLabel = document.querySelector('.gallery-login-name'); // поле отображения пользователя
 
 /** установка изображения слайдера и комментариев к нему
  * type: 1 - кнопка вперед, 0 - кнопка назад, 2 - текущее изображение
@@ -56,10 +57,32 @@ function addComment(text, author, date){
     dateElem .className = 'cmt-container__date';
     dateElem.innerHTML = date;
 
+    // кнопка удаления комментария
+    if(loginNameLabel){
+        if(loginNameLabel.innerHTML === author){
+            let btn = document.createElement('button');
+            btn.innerHTML= '&#128465;';
+            btn.className = 'cmt-container__delete-btn';
+            btn.onclick = setDeleteParentComment(dateElem);
+            comment.appendChild(btn);
+        }
+    }
+
     comment.appendChild(textArea);
     comment.appendChild(authorElem);
     comment.appendChild(dateElem);
     commentsList.appendChild(comment);
+}
+
+// функция удаления выбранного комментария пользователя
+function setDeleteParentComment(elem){
+    return () =>{
+        fetch(`../engine/delete-comment.php?time=${elem.innerHTML}`).then(response => response.text()).then(data => {
+            if(data === '1'){
+                elem.parentNode.remove();
+            }
+        });
+    }
 }
 
 /** показать комментарии для текущего изображения */
@@ -72,7 +95,7 @@ function showComments(){
     });
 }
 
-// отправка нового комментария
+// добавление нового комментария в БД
 const sendNewCmtBtn =  document.querySelector('.cmt-container__btn');
 if(sendNewCmtBtn){
     let newCmt = document.querySelector('#cmt-container__new-cmt');
@@ -80,7 +103,7 @@ if(sendNewCmtBtn){
     sendNewCmtBtn.addEventListener('click', () => {
         if(newCmt.value !== ''){
             // POST-запрос
-            const params = new URLSearchParams();
+            let params = new URLSearchParams();
             params.set('image', imagePane.src);
             params.set('newcmt', true);
             params.set('text', newCmt.value);
@@ -94,13 +117,12 @@ if(sendNewCmtBtn){
             let hours = addZeroToNumber(date.getHours());
             let minutes = addZeroToNumber(date.getMinutes());
             let seconds = addZeroToNumber(date.getSeconds());
-            let tableDate = `${date.getFullYear()}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-            params.set('date', tableDate);
+            date = `${date.getFullYear()}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+            params.set('date', date);
     
             fetch('../engine/db.php', {method: 'POST', body: params}).then(response => response.text()).then(data => {
-                console.log(data);
                 if(data === '1'){
-                    addComment(newCmt.value, author.innerHTML, tableDate);
+                    addComment(newCmt.value, author.innerHTML, date);
                     newCmt.value = '';
                 }
             });

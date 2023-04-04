@@ -2,7 +2,6 @@
     require_once(dirname(__DIR__, 1).'/config/config.php');
     require_once(dirname(__DIR__, 1).'/data/images.php');
     require_once('CommentsModel.php');
-    $cmtModel = new CommentsModel(HOST_DB, NAME_DB, USER_DB, PASS_DB);
     $img_index = intval(file_get_contents(IMAGE_INDEX_FILE)); // индекс показываемого изображения
 
     $files = getImages();

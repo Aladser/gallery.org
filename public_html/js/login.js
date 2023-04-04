@@ -22,7 +22,6 @@ document.querySelector('#loginWindow__sendBtn').onclick = ()=>{
         params.set('login', loginInput.value);
         params.set('password', passInput.value);
         fetch('../engine/db.php', {method: 'POST', body: params}).then(response => response.text()).then(data => {
-            console.log(data);
             if(data !== 'auth') {
                 loginWindowError.classList.remove('hidden');
                 loginWindowError.innerHTML = data === 'wrongpass' ? 'Неверный пароль' : 'Пользователь не найден';

@@ -48,3 +48,19 @@
     color:black;
     font-size: 0.8rem;
 }
+
+.cmt-container__delete-btn{
+    position: absolute;
+    bottom: 0.1rem;
+    right: 0.1rem;
+    font-size: 0.75rem;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+.cmt-container__delete-btn:hover{
+    background-color: rgb(58, 179, 249);
+}
+.cmt-container__delete-btn:active{
+    cursor: default;
+}
