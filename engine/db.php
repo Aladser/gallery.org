@@ -1,8 +1,10 @@
 <?php
     require_once(dirname(__DIR__, 1).'/config/config.php');
     require_once('UsersModel.php');
+    require_once('CommentsModel.php');
     session_start();
-    $usersModel = new UsersModel(HOST_DB, NAME_DB, USER_DB, PASS_DB); 
+    $usersModel = new UsersModel(HOST_DB, NAME_DB, USER_DB, PASS_DB);
+    $cmtModel = new CommentsModel(HOST_DB, NAME_DB, USER_DB, PASS_DB);
 
     // авторизация
     function logIn($usersModel, $login){
@@ -66,4 +68,19 @@
         else {
             header('Location: ../index.php');
         }
+    }
+
+    // добавление комментария
+    if(isset($_POST['newcmt'])){
+        $image = basename($_POST['image']);
+        $text  = $_POST['text'];
+        $author = $_POST['author'];
+        $date = $_POST['date'];
+        echo $cmtModel->addComment($image, $text, $author, $date); 
+    }
+    
+    // список комментариев
+    if(isset($_POST['comments'])){
+        print_r($_POST);
+        //print_r( $cmtModel->getComments($_POST['image']) );
     }

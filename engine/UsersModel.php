@@ -58,14 +58,14 @@ class UsersModel{
     // добавить нового пользователя
     public function addUser($login, $password){
         $this->connect();
-        $query = $this->dbConnection->query("insert into users(user_login, user_password) values('$login', '$password')");
+        $this->dbConnection->query("insert into users(user_login, user_password) values('$login', '$password')");
         $this->disconnect();
     }
 
     // добавить хэш пользователю
     public function addUserHash($login){
         $this->connect();
-        $hash = $this->generateCode();
+        $hash = UsersModel::generateCode();
         $this->dbConnection->query("UPDATE users SET user_hash='$hash' WHERE user_login='$login'");
         $this->disconnect();
     }
@@ -80,7 +80,7 @@ class UsersModel{
     }
 
     // генерация случайной строки
-    function generateCode($length=6) {
+    public static function generateCode($length=6) {
         $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPRQSTUVWXYZ0123456789";
         $code = "";
         $clen = strlen($chars) - 1;

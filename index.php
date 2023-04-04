@@ -15,13 +15,14 @@
     <link rel="stylesheet" href="public_html/css/login.css">
     <link rel="stylesheet" href="public_html/css/modal.css">
     <link rel="stylesheet" href="public_html/css/upload_files.css">
+    <link rel="stylesheet" href="public_html/css/comments.css">
 </head>
 <body>
     <h2 class='gallery-header'>Галерея</h2>
 
     <?php if(isset($_SESSION['auth'])): ?>
         <input type="button" class='gallery-btn gallery__login-btn' id='login-btn' value='Выйти'>
-        <div class='gallery-login-label'><?=$_SESSION['login']?></div>
+        <div class='gallery-login-name'><?=$_SESSION['login']?></div>
     <?php else: ?>
         <input type="button" class='gallery-btn gallery__login-btn' id='login-btn' value='Войти'>
     <?php endif; ?>
@@ -31,11 +32,23 @@
         <img class='gallery__pane'>
         <div class='gallery__next-btn'>&#9002;</div>
     </container>
-
+    
     <?php if(isset($_SESSION['auth'])): ?>
         <?php include 'views/upload_file_view.php'; ?>
         <input type="button" class='gallery-btn gallery__delete-btn' value="Удалить">
     <?php endif; ?>
+
+    <container class='cmt-container'>
+        <h4>Комментарии</h4>
+        <div class='cmt-container__list'>
+
+        </div>
+        <?php if(isset($_SESSION['auth'])): ?>
+            <textarea  class='cmt-container__cmt' id='cmt-container__new-cmt'></textarea>
+            <br>
+            <input type="button" class='gallery-btn cmt-container__btn' value='Отправить'>
+        <?php endif; ?>
+    </container>
 
     <?php require_once('views/login_view.php'); ?>
     <script type='text/javascript' src='public_html/js/index.js'></script>
