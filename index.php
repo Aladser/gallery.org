@@ -44,9 +44,10 @@
 
         </div>
         <?php if(isset($_SESSION['auth'])): ?>
-            <textarea  class='cmt-container__text' id='cmt-container__new-cmt'></textarea>
-            <br>
-            <input type="button" class='gallery-btn cmt-container__btn' value='Отправить'>
+            <form method="post" id='cmt-container__form'>
+                <textarea  class='cmt-container__text' id='cmt-container__new-cmt'></textarea>
+                <input type="submit" class='gallery-btn cmt-container__btn' id='cmt-container__submit-btn' value='Отправить'>
+            </form>
         <?php endif; ?>
     </container>
 

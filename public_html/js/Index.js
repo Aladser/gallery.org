@@ -96,12 +96,13 @@ function showComments(){
 }
 
 // добавление нового комментария в БД
-const sendNewCmtBtn =  document.querySelector('.cmt-container__btn');
-if(sendNewCmtBtn){
+const sendNewCmtForm =  document.querySelector('#cmt-container__form');
+if(sendNewCmtForm){
     let newCmt = document.querySelector('#cmt-container__new-cmt');
     let author =  document.querySelector('.gallery-login-name');
-    sendNewCmtBtn.addEventListener('click', () => {
+    sendNewCmtForm.addEventListener('submit', e => {
         if(newCmt.value !== ''){
+            e.preventDefault()
             // POST-запрос
             let params = new URLSearchParams();
             params.set('image', imagePane.src);
