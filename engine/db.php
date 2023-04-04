@@ -16,7 +16,7 @@
         $_SESSION['login'] = $login;
     }
 
-    // аутентификация и авторизация
+    // аутентификация
     if(isset($_POST['auth']))
     {
         $login = $_POST['login'];

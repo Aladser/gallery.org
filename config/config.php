@@ -1,6 +1,6 @@
 <?php
-require_once(dirname(__DIR__, 1).'/engine/UsersModel.php');
-require_once(dirname(__DIR__, 1).'/engine/CommentsModel.php');
+require_once(dirname(__DIR__, 1).'/engine/table_models/UsersModel.php');
+require_once(dirname(__DIR__, 1).'/engine/table_models/CommentsModel.php');
 
 define('UPLOAD_FILES', dirname(__DIR__, 1).'\data\img');
 define('IMAGE_INDEX_FILE', dirname(__DIR__, 1).'\data\image_index.data');

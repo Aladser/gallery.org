@@ -2,11 +2,11 @@
 
 // Класс модели таблицы БД
 class TableDBModel{
-    private $dbConnection; // соединение с БД
-    private $host;
-    private $nameDB;
-    private $userDB;
-    private $passwordDB;
+    protected $dbConnection; // соединение с БД
+    protected $host;
+    protected $nameDB;
+    protected $userDB;
+    protected $passwordDB;
 
     function __construct($host, $nameDB, $userDB, $passwordDB){
         $this->host = $host;
@@ -15,7 +15,7 @@ class TableDBModel{
         $this->passwordDB = $passwordDB;
     }
 
-    private function connect(){
+    protected function connect(){
         try{
             $dbname = $this->nameDB;
             $host = $this->host;
@@ -27,7 +27,7 @@ class TableDBModel{
         }
     }
 
-    private function disconnect(){
+    protected function disconnect(){
         $this->dbConnection = null;
     }
 }
