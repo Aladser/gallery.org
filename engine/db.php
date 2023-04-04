@@ -1,64 +1,31 @@
 <?php
     require_once(dirname(__DIR__, 1).'/config/config.php');
+    require_once('UsersModel.php');
     session_start();
+    $usersModel = new UsersModel(HOST_DB, NAME_DB, USER_DB, PASS_DB); 
 
-    // генерация случайной строки
-    function generateCode($length=6) {
-        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPRQSTUVWXYZ0123456789";
-        $code = "";
-        $clen = strlen($chars) - 1;
-        while (strlen($code) < $length) {
-            $code .= $chars[mt_rand(0,$clen)];
-        }
-        return $code;
-    }
-
-    // проверить существование пользователя
-    function existsUser($user){
-        global $dbConnection;
-        $query = $dbConnection->prepare("select count(*) as count from users where user_login = :user");
-        $query->execute(['user' => $user]);
-        $count = $query->fetch(PDO::FETCH_ASSOC)['count'];
-        return intval($count) === 1;
-    }
-
-    // проверить пароль
-    function isAuthorization($user, $password){
-        global $dbConnection;
-        $password = md5(md5($password));
-        $query = $dbConnection->prepare("select count(*) as count from users where user_login = :user and user_password=:password");
-        $query->execute(['user' => $user, 'password' => $password]);
-        $count = $query->fetch(PDO::FETCH_ASSOC)['count'];
-        return intval($count) === 1;
-    }
- 
     // авторизация
-    if(isset($_POST['login']))
-    {
-        // соединение с БД
-        try{
-            $dbConnection = new PDO("mysql:dbname=".NAME_DB."; host=".HOST_DB, USER_DB, PASS_DB);
-        }
-        catch(PDOException $e){
-            die($e->getMessage());
-        }
+    function logIn($usersModel, $login){
+        // добавить хэш пользователю
+        $usersModel->addUserHash($login); 
+        // Ставим куки
+        setcookie('login', $login, time()+60*60*24);
+        setcookie('hash', $usersModel->getUserHash($login), time()+60*60*24);
+        //$rslt = require_once('check.php');
+        $_SESSION['auth'] = 1;
+        $_SESSION['login'] = $login;
+    }
 
+    // аутентификация и авторизация
+    if(isset($_POST['auth']))
+    {
         $login = $_POST['login'];
-        if(existsUser($login))
+        if($usersModel->existsUser($login))
         {
             $password = $_POST['password'];
-            if(isAuthorization($login, $password)){
-                // Генерируем случайное число и шифруем его
-                $hash = md5(generateCode(10));
-                $query = $dbConnection->prepare("UPDATE users SET user_hash=:user_hash WHERE user_login=:user_login");
-                $query->execute(['user_hash'=>$hash, 'user_login' => $login]);
-                // Ставим куки
-                setcookie('login', $login, time()+60*60*24);
-                setcookie('hash', $hash, time()+60*60*24);
-                //$rslt = require_once('check.php');
+            if($usersModel->isAuthorization($login, $password)){
+                logIn($usersModel, $login);
                 $rslt = 'auth';
-                $_SESSION['auth'] = 1;
-                $_SESSION['login'] = $login;
             }
             else {
                 $rslt = 'wrongpass';
@@ -67,8 +34,36 @@
         else {
             $rslt = 'nouser';
         }
-
         echo $rslt;
-        $dbConnection = null;
     }
-?>
+
+    // регистрация 
+    if(isset($_POST['newLogin'])){
+        $newLogin = $_POST['newLogin'];
+        $newPass = $_POST['newPassword'];
+        // проверяем логин
+        if(!preg_match("/^[a-zA-Z0-9]+$/",$newLogin))
+        {
+            $_SESSION['error'] = "Логин может состоять только из букв английского алфавита и цифр";
+        }
+        elseif(strlen($newLogin) < 3 || strlen($newLogin) > 30)
+        {
+            $_SESSION['error'] = "Логин должен быть не меньше 3-х символов и не больше 30";
+        }
+        elseif($usersModel->existsUser($newLogin)){
+            $_SESSION['error'] = "Пользователь с таким логином уже существует в базе данных";
+        }
+        // добавление пользователя
+        else{
+            $password = md5(md5(trim($newPass)));
+            $usersModel->addUser($newLogin, $password); 
+            logIn($usersModel, $newLogin);
+            $rslt = 'auth';
+        }
+        // редирект
+        if(isset($_SESSION['error'])) 
+            header('Location: ../views/registration_view.php');
+        else {
+            header('Location: ../index.php');
+        }
+    }

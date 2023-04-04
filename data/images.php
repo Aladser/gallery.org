@@ -4,7 +4,7 @@ require_once(dirname(__DIR__, 1).'/config/config.php');
 
 // получить пути изображений
 function getImages(){
-    $files = scandir(FILES);
+    $files = scandir(UPLOAD_FILES);
     array_splice($files,0, 2);
     return count($files) !=0 ? $files : null;
 }

@@ -15,7 +15,7 @@
 
         $count = count($files);
         $filename = basename($_GET['file']);
-        $file =  FILES.'\\'.$filename; // удаляем файл
+        $file =  UPLOAD_FILES.'\\'.$filename; // удаляем файл
         $dbConnection->query("delete from images where image_path='$filename'"); // удаляем файл в бд
         unlink($file);
         $count--;

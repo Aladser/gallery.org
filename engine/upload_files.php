@@ -19,7 +19,7 @@ if (!empty($_FILES)) {
             break;
         }
  
-        $filePath = FILES . '\\' . basename($fileName);
+        $filePath = UPLOAD_FILES . '\\' . basename($fileName);
  
         if (!move_uploaded_file($_FILES['files']['tmp_name'][$i], $filePath)) {
             $_SESSION['error'] = "$fileName: Ошибка загрузки файла";

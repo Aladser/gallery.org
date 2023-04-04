@@ -4,8 +4,9 @@
 function setChangeFrontImage(type=2){
     function change(){
         fetch(`../../data/images.php?id=true&type=${type}`).then(response => response.text()).then(data => {
+            console.log(data);
             if(data !== ''){
-                document.querySelector('.gallery__pane').src = '../../uploads/'+data;
+                document.querySelector('.gallery__pane').src = '../../data/img/'+data;
             }
             else{
                 document.querySelector('.gallery__pane').src = '';
