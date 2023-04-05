@@ -9,6 +9,15 @@ function getImages(){
     return count($files) !=0 ? $files : null;
 }
 
+// получить текущее изображение
+function getCurrentImage(){
+    $img_index = file_get_contents(IMAGE_INDEX_FILE);
+    $img_index = explode(' = ', $img_index)[1];
+    $img_index = mb_substr($img_index, 0, strlen($img_index)-1);
+    $img_index = intval($img_index);
+    return getImages()[$img_index];
+}
+
 // смена изображения слайдера
 if(isset($_GET['id'])){
     if(is_null(getImages())) {

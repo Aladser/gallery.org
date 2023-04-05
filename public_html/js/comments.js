@@ -1,45 +1,3 @@
-const imagePane = document.querySelector('.gallery__pane');
-const commentsList = document.querySelector('.cmt-container__list');
-const loginNameLabel = document.querySelector('.gallery-login-name'); // поле отображения пользователя
-
-/** установка изображения слайдера и комментариев к нему
- * type: 1 - кнопка вперед, 0 - кнопка назад, 2 - текущее изображение
- */ 
-function setChangeFrontImage(type=2){
-    return () => fetch(`../../data/images.php?id=true&type=${type}`).then(response => response.text()).then(data => {
-        imagePane.src = data !== '' ? '../../data/img/'+data : '';
-        commentsList.querySelectorAll('.cmt-container__cmt').forEach(elem => elem.remove());
-        showComments();
-    });
-}
-setChangeFrontImage()();
-document.querySelector('.gallery__prev-btn').addEventListener('click', setChangeFrontImage(0));
-document.querySelector('.gallery__next-btn').addEventListener('click', setChangeFrontImage(1));
-
-// удаление изображения
-const deleteBtn = document.querySelector('.gallery__delete-btn');
-if(deleteBtn){
-    deleteBtn.addEventListener('click', ()=>{
-        let file = document.querySelector('.gallery__pane').src;
-        fetch(`../../engine/delete_files.php?file=${file}`);
-        location.href = '../../index.php';
-    });
-}
-
-// сброс выбора изображения
-const filenameLabel = document.querySelector('.custom-file__filename');
-const fileNameInput = document.querySelector('.custom-file__label input');
-const resetBtn = document.querySelector('#upload-container__reset-btn');
-if(resetBtn){
-    resetBtn.addEventListener('click', ()=>{
-        filenameLabel.innerHTML = 'файл не выбран';
-        fileNameInput.value = '';
-    });
-}
-
-// показ имени выбранного изображения
-if(fileNameInput){fileNameInput.addEventListener('change', e => filenameLabel.innerHTML = e.target.files[0].name);}
-
 /** создание комментария на html-странице */
 function addComment(text, author, date){
     let comment = document.createElement('div');
@@ -58,6 +16,7 @@ function addComment(text, author, date){
     dateElem.innerHTML = date;
 
     // кнопка удаления комментария
+    let loginNameLabel = document.querySelector('.gallery-login-name'); // поле отображения имени пользователя
     if(loginNameLabel){
         if(loginNameLabel.innerHTML === author){
             let btn = document.createElement('button');
@@ -71,7 +30,7 @@ function addComment(text, author, date){
     comment.appendChild(textArea);
     comment.appendChild(authorElem);
     comment.appendChild(dateElem);
-    commentsList.appendChild(comment);
+    document.querySelector('.cmt-container__list').appendChild(comment);
 }
 
 // функция удаления выбранного комментария пользователя
@@ -105,7 +64,6 @@ if(sendNewCmtForm){
             e.preventDefault()
             // POST-запрос
             let params = new URLSearchParams();
-            params.set('image', imagePane.src);
             params.set('newcmt', true);
             params.set('text', newCmt.value);
             params.set('author', author.innerHTML);
@@ -122,6 +80,7 @@ if(sendNewCmtForm){
             params.set('date', date);
     
             fetch('../engine/db.php', {method: 'POST', body: params}).then(response => response.text()).then(data => {
+                console.log(data);
                 if(data === '1'){
                     addComment(newCmt.value, author.innerHTML, date);
                     newCmt.value = '';

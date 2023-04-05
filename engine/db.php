@@ -69,12 +69,12 @@
     }
 
     // добавление комментария
+    // имя текущего изображения берется с сервера, т.к. у IMG русское название некорректно
     if(isset($_POST['newcmt'])){
-        $image = basename($_POST['image']);
         $text  = $_POST['text'];
         $author = $_POST['author'];
         $date = $_POST['date'];
-        echo $cmtModel->addComment($image, $text, $author, $date); 
+        echo $cmtModel->addComment(getCurrentImage(), $text, $author, $date); 
     }
     
     // список комментариев

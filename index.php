@@ -52,7 +52,8 @@
     </container>
 
     <?php require_once('views/login_view.php'); ?>
-    <script type='text/javascript' src='public_html/js/index.js'></script>
     <script type='text/javascript' src='public_html/js/login.js'></script>
+    <script type='text/javascript' src='public_html/js/images.js'></script>
+    <script type='text/javascript' src='public_html/js/comments.js'></script>
 </body>
 </html>
