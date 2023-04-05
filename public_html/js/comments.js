@@ -22,6 +22,7 @@ function addComment(text, author, date){
             let btn = document.createElement('button');
             btn.innerHTML= '&#128465;';
             btn.className = 'cmt-container__delete-btn';
+            btn.title = 'удалить комментарий';
             btn.onclick = setDeleteParentComment(dateElem);
             comment.appendChild(btn);
         }

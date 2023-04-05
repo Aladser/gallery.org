@@ -28,12 +28,12 @@
     <?php endif; ?>
 
     <container class='gallery'>
-        <div class='gallery__prev-btn'>&#9001;</div>
+        <div class='gallery__prev-btn' title='предыдущее изображение'>&#9001;</div>
         <img class='gallery__pane'>
-        <div class='gallery__next-btn'>&#9002;</div>
+        <div class='gallery__next-btn' title='следующее изображение'>&#9002;</div>
         <?php if(isset($_SESSION['auth'])): ?>
-            <input type="button" class='gallery-btn gallery__add-btn' value="Добавить">
-            <input type="button" class='gallery-btn gallery__delete-btn' value="Удалить">
+            <input type="button" class='gallery-btn gallery__add-btn' value="Добавить" title='добавить изображение'>
+            <input type="button" class='gallery-btn gallery__delete-btn' value="Удалить" title='удалить текущее изображение'>
         <?php endif; ?>
     </container>
 
@@ -45,7 +45,7 @@
         <?php if(isset($_SESSION['auth'])): ?>
             <form method="post" id='cmt-container__form'>
                 <textarea  class='cmt-container__text' id='cmt-container__new-cmt'></textarea>
-                <input type="submit" class='gallery-btn cmt-container__btn' id='cmt-container__submit-btn' value='Отправить'>
+                <input type="submit" class='gallery-btn cmt-container__btn' id='cmt-container__submit-btn' value='Отправить' title='Добавить комментарий'>
             </form>
         <?php endif; ?>
     </container>

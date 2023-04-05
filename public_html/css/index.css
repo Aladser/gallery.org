@@ -26,13 +26,13 @@ body{
 .gallery__add-btn{
     position: absolute;
     top: 0;
-    right: -6.5rem;
+    left: -6.5rem;
 }
 
 .gallery__delete-btn{
     position: absolute;
     top: 2rem;
-    right: -6.5rem;
+    left: -6.5rem;
 }
 
 .gallery-btn:active{
