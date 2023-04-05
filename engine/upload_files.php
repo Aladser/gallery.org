@@ -34,17 +34,28 @@ if (!empty($_FILES)) {
                 die($e->getMessage());
             }
 
-            $query = $dbConnection->query("insert into images(image_path) values('$fileName')");
-            // установка изображения слайдера загруженным изображением
-            $files = getImages();
-            $index = array_search($fileName, $files);
-            file_put_contents(IMAGE_INDEX_FILE, "index = $index;");
+            $query = $dbConnection->query("select count(*) as count from images where image_path='$fileName'");
+            $count = intval($query->fetch(PDO::FETCH_ASSOC)['count']);
+            if($count === 0){
+                $query = $dbConnection->query("insert into images(image_path) values('$fileName')");
+                // установка изображения слайдера загруженным изображением
+                $files = getImages();
+                $index = array_search($fileName, $files);
+                file_put_contents(IMAGE_INDEX_FILE, "index = $index;");
+            }
+            else{
+                $_SESSION['error'] = "$fileName: файл уже существует";
+            }
 
             $dbConnection = null;
         }
     }
-
-    header('Location: ../index.php');
+    
+    // редирект
+    if(isset($_SESSION['error'])) 
+        header('Location: ../views/upload_file_view.php');
+    else
+        header('Location: ../index.php');
 }
  
 ?>

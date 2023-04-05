@@ -23,6 +23,18 @@ body{
     background-color: rgb(58, 179, 249);
 }
 
+.gallery__add-btn{
+    position: absolute;
+    top: 0;
+    right: -6.5rem;
+}
+
+.gallery__delete-btn{
+    position: absolute;
+    top: 2rem;
+    right: -6.5rem;
+}
+
 .gallery-btn:active{
     cursor: default;
     background-color: white;
@@ -98,10 +110,4 @@ body{
     position: absolute;
     top: 0;
     right: 0;
-}
-
-.gallery__delete-btn{
-    position: absolute;
-    top: 22rem;
-    left: 13rem;
 }

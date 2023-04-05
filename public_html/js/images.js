@@ -1,6 +1,3 @@
-const filenameLabel = document.querySelector('.custom-file__filename');
-const fileNameInput = document.querySelector('.custom-file__label input');
-
 /** установка изображения слайдера и комментариев к нему
  * type: 1 - кнопка вперед, 0 - кнопка назад, 2 - текущее изображение
  */ 
@@ -15,6 +12,14 @@ setChangeFrontImage()();
 document.querySelector('.gallery__prev-btn').addEventListener('click', setChangeFrontImage(0));
 document.querySelector('.gallery__next-btn').addEventListener('click', setChangeFrontImage(1));
 
+// добавление изображения
+const addBtn = document.querySelector('.gallery__add-btn');
+if(addBtn){
+    addBtn.addEventListener('click', ()=>{
+        location.href = '../../views/upload_file_view.php';
+    });
+}
+
 // удаление изображения
 const deleteBtn = document.querySelector('.gallery__delete-btn');
 if(deleteBtn){
@@ -25,14 +30,6 @@ if(deleteBtn){
     });
 }
 
-// сброс выбора изображения
-const resetBtn = document.querySelector('#upload-container__reset-btn');
-if(resetBtn){
-    resetBtn.addEventListener('click', ()=>{
-        filenameLabel.innerHTML = 'файл не выбран';
-        fileNameInput.value = '';
-    });
-}
-
-// показ имени выбранного изображения
-if(fileNameInput){fileNameInput.addEventListener('change', e => filenameLabel.innerHTML = e.target.files[0].name);}
+window.addEventListener('resize', function(event) {
+    console.log(this.window.outerWidth);
+}, true);

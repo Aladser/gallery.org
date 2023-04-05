@@ -31,12 +31,11 @@
         <div class='gallery__prev-btn'>&#9001;</div>
         <img class='gallery__pane'>
         <div class='gallery__next-btn'>&#9002;</div>
+        <?php if(isset($_SESSION['auth'])): ?>
+            <input type="button" class='gallery-btn gallery__add-btn' value="Добавить">
+            <input type="button" class='gallery-btn gallery__delete-btn' value="Удалить">
+        <?php endif; ?>
     </container>
-    
-    <?php if(isset($_SESSION['auth'])): ?>
-        <?php include 'views/upload_file_view.php'; ?>
-        <input type="button" class='gallery-btn gallery__delete-btn' value="Удалить">
-    <?php endif; ?>
 
     <container class='cmt-container'>
         <h4>Комментарии</h4>
