@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="public_html/css/index.css">
     <link rel="stylesheet" href="public_html/css/login.css">
     <link rel="stylesheet" href="public_html/css/modal.css">
-    <link rel="stylesheet" href="public_html/css/upload_files.css">
     <link rel="stylesheet" href="public_html/css/comments.css">
 </head>
 <body>
