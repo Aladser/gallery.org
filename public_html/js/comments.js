@@ -33,25 +33,23 @@ function addComment(text, author, date){
     document.querySelector('.cmt-container__list').appendChild(comment);
 }
 
+/** показать комментарии для текущего изображения */
+function showComments(){
+    fetch('../engine/comments-ctl.php?comments=1').then(response => response.text()).then(data => {
+        data = JSON.parse(data);
+        for(i=0; i<data.length; i++) addComment(data[i][0], data[i][1], data[i][2]);
+    });
+}
+
 // функция удаления выбранного комментария пользователя
 function setDeleteParentComment(elem){
     return () =>{
-        fetch(`../engine/delete-comment.php?time=${elem.innerHTML}`).then(response => response.text()).then(data => {
+        fetch(`../engine/comments-ctl.php?deletecmt=true&time=${elem.innerHTML}`).then(response => response.text()).then(data => {
             if(data === '1'){
                 elem.parentNode.remove();
             }
         });
     }
-}
-
-/** показать комментарии для текущего изображения */
-function showComments(){
-    const params = new URLSearchParams();
-    params.set('comments', true);
-    fetch('../engine/db.php', {method: 'POST', body: params}).then(response => response.text()).then(data => {
-        data = JSON.parse(data);
-        for(i=0; i<data.length; i++) addComment(data[i][0], data[i][1], data[i][2]);
-    });
 }
 
 // добавление нового комментария в БД
@@ -79,8 +77,7 @@ if(sendNewCmtForm){
             date = `${date.getFullYear()}-${month}-${day} ${hours}:${minutes}:${seconds}`;
             params.set('date', date);
     
-            fetch('../engine/db.php', {method: 'POST', body: params}).then(response => response.text()).then(data => {
-                console.log(data);
+            fetch('../engine/comments-ctl.php', {method: 'POST', body: params}).then(response => response.text()).then(data => {
                 if(data === '1'){
                     addComment(newCmt.value, author.innerHTML, date);
                     newCmt.value = '';

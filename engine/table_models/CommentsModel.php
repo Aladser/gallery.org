@@ -27,6 +27,15 @@ class CommentsModel extends TableDBModel{
         return $rslt;
     }
 
+    function deleteComment($time){
+        $this->connect();
+
+        $rslt = $this->dbConnection->exec("delete from comments where cmt_date='$time'");
+
+        $this->disconnect();
+        return $rslt;
+    }
+
     function deleteComments($image){
         $this->connect();
 
