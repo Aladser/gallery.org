@@ -5,12 +5,18 @@ require_once('images.php');
 
 // список комментариев
 if(isset($_GET['comments'])){
-    $comments = $cmtModel->getComments(getCurrentImage());
-    $rslt = array();
-    foreach ($comments as $row) {
-        array_push( $rslt, array($row['cmt_text'], $row['cmt_author'], $row['cmt_date']) );
+    $curImage = getCurrentImage();
+    if(!is_null($curImage)){
+        $comments = $cmtModel->getComments(getCurrentImage());
+        $rslt = array();
+        foreach ($comments as $row) {
+            array_push( $rslt, array($row['cmt_text'], $row['cmt_author'], $row['cmt_date']) );
+        }
+        echo json_encode($rslt);
     }
-    echo json_encode($rslt);
+    else {
+        echo null;
+    }
 }
 
 // добавление комментария

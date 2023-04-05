@@ -15,7 +15,8 @@ function getCurrentImage(){
     $img_index = explode(' = ', $img_index)[1];
     $img_index = mb_substr($img_index, 0, strlen($img_index)-1);
     $img_index = intval($img_index);
-    return getImages()[$img_index];
+
+    return is_null(getImages()) ? null : getImages()[$img_index];
 }
 
 // смена изображения слайдера

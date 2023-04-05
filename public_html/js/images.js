@@ -29,7 +29,3 @@ if(deleteBtn){
         location.href = '../../index.php';
     });
 }
-
-window.addEventListener('resize', function(event) {
-    console.log(this.window.outerWidth);
-}, true);

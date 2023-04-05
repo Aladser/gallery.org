@@ -37,8 +37,10 @@ function addComment(text, author, date){
 /** показать комментарии для текущего изображения */
 function showComments(){
     fetch('../engine/comments-queries.php?comments=1').then(response => response.text()).then(data => {
-        data = JSON.parse(data);
-        for(i=0; i<data.length; i++) addComment(data[i][0], data[i][1], data[i][2]);
+        if(data !== ''){
+            data = JSON.parse(data);
+            for(i=0; i<data.length; i++) addComment(data[i][0], data[i][1], data[i][2]);
+        }
     });
 }
 
