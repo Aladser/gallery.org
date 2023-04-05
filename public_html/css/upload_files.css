@@ -30,17 +30,21 @@
     cursor: pointer;
 }
 .upload-container__btn:hover{
-    background-color: rgb(240,240,240);
+    background-color: rgb(58, 179, 249);
+    color: white;
 }
 .upload-container__btn:active{
     cursor: default;
+    color: rgb(58, 179, 249);
+    background-color: white;
 }
 
 .custom-file__label{
     margin: 0;
 }
 .custom-file__label:hover{
-    background-color: rgb(240,240,240);
+    background-color: rgb(58, 179, 249);
+    color: white;
 }
 
 .custom-file small{
