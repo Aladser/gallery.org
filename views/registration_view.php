@@ -13,7 +13,7 @@
 
 <body>
     <div class='registration-container'>
-        <form class='newUserForm' method="POST" action='../engine/db.php'>
+        <form class='newUserForm' method="POST" action='../engine/users-queries.php'>
             <h3 class='newUserForm__header'>Регистрация нового пользователя</h3>
             <div class='newUserForm__row'>
                 <p class='newUserForm__label'>Логин:</p>

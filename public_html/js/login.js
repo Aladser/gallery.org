@@ -7,8 +7,10 @@ document.querySelector('.loginWindow__closeBtn').onclick = () => loginInputSecti
 
 //Кнопка Открыть модальное окно/Выйти главной страницы
 openLoginWindowBtn.onclick = () => {
-    if(openLoginWindowBtn.value === 'Войти') loginInputSection.classList.add('modal_active');
-    else location.href = '../../engine/logout.php';
+    if(openLoginWindowBtn.value === 'Войти') 
+        loginInputSection.classList.add('modal_active');
+    else
+        location.href = '/engine/users-queries.php?logout=1';
 }
 
 //***** авторизация *****//
@@ -21,7 +23,7 @@ document.querySelector('#loginWindow__sendBtn').onclick = ()=>{
         params.set('auth', true);
         params.set('login', loginInput.value);
         params.set('password', passInput.value);
-        fetch('../engine/db.php', {method: 'POST', body: params}).then(response => response.text()).then(data => {
+        fetch('../engine/users-queries.php', {method: 'POST', body: params}).then(response => response.text()).then(data => {
             if(data !== 'auth') {
                 loginWindowError.classList.remove('hidden');
                 loginWindowError.innerHTML = data === 'wrongpass' ? 'Неверный пароль' : 'Пользователь не найден';

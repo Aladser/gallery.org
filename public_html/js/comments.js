@@ -35,7 +35,7 @@ function addComment(text, author, date){
 
 /** показать комментарии для текущего изображения */
 function showComments(){
-    fetch('../engine/comments-ctl.php?comments=1').then(response => response.text()).then(data => {
+    fetch('../engine/comments-queries.php?comments=1').then(response => response.text()).then(data => {
         data = JSON.parse(data);
         for(i=0; i<data.length; i++) addComment(data[i][0], data[i][1], data[i][2]);
     });
@@ -44,7 +44,7 @@ function showComments(){
 // функция удаления выбранного комментария пользователя
 function setDeleteParentComment(elem){
     return () =>{
-        fetch(`../engine/comments-ctl.php?deletecmt=true&time=${elem.innerHTML}`).then(response => response.text()).then(data => {
+        fetch(`../engine/comments-queries.php?deletecmt=true&time=${elem.innerHTML}`).then(response => response.text()).then(data => {
             if(data === '1'){
                 elem.parentNode.remove();
             }
@@ -77,7 +77,7 @@ if(sendNewCmtForm){
             date = `${date.getFullYear()}-${month}-${day} ${hours}:${minutes}:${seconds}`;
             params.set('date', date);
     
-            fetch('../engine/comments-ctl.php', {method: 'POST', body: params}).then(response => response.text()).then(data => {
+            fetch('../engine/comments-queries.php', {method: 'POST', body: params}).then(response => response.text()).then(data => {
                 if(data === '1'){
                     addComment(newCmt.value, author.innerHTML, date);
                     newCmt.value = '';

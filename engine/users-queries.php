@@ -68,3 +68,11 @@ if(isset($_POST['newLogin'])){
         header('Location: ../index.php');
     }
 }
+
+// Выход
+if(isset($_GET['logout'])){
+    unset($_SESSION['auth']);
+    setcookie("login", "", time()-3600);
+    setcookie("hash", "", time()-3600);
+    header('Location: ../index.php');
+}
