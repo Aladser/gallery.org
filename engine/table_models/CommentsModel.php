@@ -9,16 +9,21 @@ class CommentsModel extends TableDBModel{
         $id = $query->fetch(PDO::FETCH_ASSOC)['image_id'];
         $sql = "select cmt_text, cmt_author, cmt_date from comments where image_id='$id'";
         $query = $this->dbConnection->query($sql);
+        // формирование ответа-массива
+        $rslt = array();
+        foreach ($query as $row) {
+            array_push( $rslt, array('text'=>$row['cmt_text'], 'author'=>$row['cmt_author'], 'date'=>$row['cmt_date']) );
+        }
 
         $this->disconnect();
-        return $query;
+        return $rslt;
     }
 
     function addComment($image, $text, $author, $date){
         $this->connect();
 
-        $sql = "select image_id from images where image_path='$image'";
-        $query = $this->dbConnection->query($sql);
+
+        $query = $this->dbConnection->query("select image_id from images where image_path='$image'");
         $id = $query->fetch(PDO::FETCH_ASSOC)['image_id'];
         $sql = "insert into comments(image_id, cmt_author, cmt_text, cmt_date) values($id, '$author', '$text', '$date')";
         $rslt = $this->dbConnection->exec($sql);

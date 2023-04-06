@@ -8,11 +8,7 @@ if(isset($_GET['comments'])){
     $curImage = getCurrentImage();
     if(!is_null($curImage)){
         $comments = $cmtModel->getComments(getCurrentImage());
-        $rslt = array();
-        foreach ($comments as $row) {
-            array_push( $rslt, array($row['cmt_text'], $row['cmt_author'], $row['cmt_date']) );
-        }
-        echo json_encode($rslt);
+        echo json_encode($comments);
     }
     else {
         echo null;
@@ -22,10 +18,7 @@ if(isset($_GET['comments'])){
 // добавление комментария
 // имя текущего изображения берется с сервера, т.к. у IMG русское название некорректно
 if(isset($_POST['newcmt'])){
-    $text  = $_POST['text'];
-    $author = $_POST['author'];
-    $date = $_POST['date'];
-    echo $cmtModel->addComment(getCurrentImage(), $text, $author, $date); 
+    echo $cmtModel->addComment(getCurrentImage(), $_POST['text'],  $_POST['author'], $_POST['date']); 
 }
 
 // удаление комментария
