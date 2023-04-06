@@ -25,7 +25,9 @@ const deleteBtn = document.querySelector('.gallery__delete-btn');
 if(deleteBtn){
     deleteBtn.addEventListener('click', ()=>{
         let file = document.querySelector('.gallery__pane').src;
-        fetch(`../../engine/delete_files.php?file=${file}`).then(r=>r.text()).then(d=>console.log(d));
-        location.href = '../../index.php';
+        fetch(`../../engine/delete_files.php?file=${file}`).then(r=>r.text()).then(data=>{
+            if(data === '1') location.href = '../../index.php';
+            else alert(`ошибка удаления ${data}`);
+        });
     });
 }
