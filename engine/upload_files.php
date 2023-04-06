@@ -1,29 +1,22 @@
 <?php
- 
 require_once(dirname(__DIR__, 1).'/config/config.php');
 require_once('images.php');
 session_start();
  
 if (!empty($_FILES)) {
-    for ($i = 0; $i < count($_FILES['files']['name']); $i++) {
- 
-        $fileName = $_FILES['files']['name'][$i];
- 
-        if ($_FILES['files']['size'][$i] > UPLOAD_MAX_SIZE) {
-            $_SESSION['error'] = "$fileName: Недопустимый размер файла";
-            break;
-        }
- 
-        if (!in_array($_FILES['files']['type'][$i], ALLOWED_TYPES)) {
-            $_SESSION['error'] = "$fileName: Недопустимый формат файла";
-            break;
-        }
- 
+    $fileName = $_FILES['files']['name'][0];
+
+    if ($_FILES['files']['size'][$i] > UPLOAD_MAX_SIZE) {
+        $_SESSION['error'] = "$fileName: Недопустимый размер файла";
+    }
+    elseif (!in_array($_FILES['files']['type'][0], ALLOWED_TYPES)) {
+        $_SESSION['error'] = "$fileName: Недопустимый формат файла";
+    }
+    else{
         $filePath = UPLOAD_FILES . '\\' . basename($fileName);
- 
-        if (!move_uploaded_file($_FILES['files']['tmp_name'][$i], $filePath)) {
+
+        if (!move_uploaded_file($_FILES['files']['tmp_name'][0], $filePath)) {
             $_SESSION['error'] = "$fileName: Ошибка загрузки файла";
-            break;
         }
         else{
             // соединение с БД
@@ -33,7 +26,7 @@ if (!empty($_FILES)) {
             catch(PDOException $e){
                 die($e->getMessage());
             }
-
+    
             $query = $dbConnection->query("select count(*) as count from images where image_path='$fileName'");
             $count = intval($query->fetch(PDO::FETCH_ASSOC)['count']);
             if($count === 0){
@@ -46,7 +39,7 @@ if (!empty($_FILES)) {
             else{
                 $_SESSION['error'] = "$fileName: файл уже существует";
             }
-
+    
             $dbConnection = null;
         }
     }

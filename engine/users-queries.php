@@ -11,8 +11,6 @@ function logIn($usersModel, $login){
     // Ставим куки
     setcookie('login', $login, time()+60*60*24);
     setcookie('hash', $usersModel->getUserHash($login), time()+60*60*24);
-    // защита выключена для простоты проекта
-    //$rslt = require_once('check.php');
     $_SESSION['auth'] = 1;
     $_SESSION['login'] = $login;
 }
