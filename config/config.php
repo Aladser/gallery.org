@@ -15,5 +15,5 @@ define('UPLOAD_MAX_SIZE', 10000000); // 10mb
 define('ALLOWED_TYPES', ['image/jpeg', 'image/png', 'image/gif']);
 
 $db = new DB(HOST_DB, NAME_DB, USER_DB, PASS_DB);
-$usersModel = new UsersModel(HOST_DB, NAME_DB, USER_DB, PASS_DB);
-$cmtModel = new CommentsModel(HOST_DB, NAME_DB, USER_DB, PASS_DB);
+$usersModel = new UsersModel(HOST_DB, NAME_DB, USER_DB, PASS_DB, $db);
+$cmtModel = new CommentsModel(HOST_DB, NAME_DB, USER_DB, PASS_DB, $db);

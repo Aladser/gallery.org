@@ -1,24 +1,6 @@
 <?php 
     require_once('config/config.php');
     session_start();
-
-    function run($db){
-        $data = $db->query("select image_id from images where image_path='1TPVZhOBlt4.jpg'");
-        $id = $data->fetch(PDO::FETCH_ASSOC)['image_id'];
-        $data = $db->query("select cmt_text, cmt_author, cmt_date from comments where image_id='$id'");
-        // формирование ответа-массива
-        foreach ($data as $row) {
-            yield array('text'=>$row['cmt_text'], 'author'=>$row['cmt_author'], 'date'=>$row['cmt_date']);
-        }
-    }
-
-    foreach (run($db) as $row) {
-        $txt = $row['text'];
-        $author = $row['author'];
-        $date = $row['date'];
-        echo nl2br("$txt $author $date\n");
-    }
-
 ?>
 
 <!DOCTYPE html>

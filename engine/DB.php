@@ -35,7 +35,7 @@ class DB{
         return $rslt;
     }
 
-    function exec(){
+    function exec($sql){
         $this->connect();
         $rslt = $this->dbConnection->exec($sql);
         $this->disconnect();

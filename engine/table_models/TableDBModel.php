@@ -7,12 +7,15 @@ class TableDBModel{
     protected $nameDB;
     protected $userDB;
     protected $passwordDB;
+    protected $db;
 
-    function __construct($host, $nameDB, $userDB, $passwordDB){
+    function __construct($host, $nameDB, $userDB, $passwordDB, $db){
         $this->host = $host;
         $this->nameDB = $nameDB;
         $this->userDB = $userDB;
         $this->passwordDB = $passwordDB;
+
+        $this->db = $db;
     }
 
     protected function connect(){
