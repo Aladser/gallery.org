@@ -9,7 +9,6 @@
         $file =  UPLOAD_FILES.'\\'.$filename; 
         $cmtModel->deleteComments($filename); // удаляем комментарии под изображением
         $rslt = $db->exec("delete from images where image_path='$filename'"); // удаляем изображение из бд
-        $db->exec("delete from images where image_path='$filename'");
         unlink($file);// удаляем файл
         $count--;
     

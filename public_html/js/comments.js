@@ -61,7 +61,7 @@ if(sendNewCmtForm){
     let author =  document.querySelector('.gallery-login-name');
     sendNewCmtForm.addEventListener('submit', e => {
         if(newCmt.value !== ''){
-            e.preventDefault()
+            e.preventDefault();
             // POST-запрос
             let params = new URLSearchParams();
             params.set('newcmt', true);
