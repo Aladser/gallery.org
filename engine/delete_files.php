@@ -1,9 +1,8 @@
 <?php
     require_once(dirname(__DIR__, 1).'/config/config.php');
-    require_once('images.php');
     $img_index = intval(file_get_contents(IMAGE_INDEX_FILE)); // индекс показываемого изображения
 
-    $files = getImages();
+    $files = $imageModel->getImages();
     if(!is_null($files)){
         $count = count($files);
         $filename = basename($_GET['file']);

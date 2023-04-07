@@ -1,6 +1,5 @@
 <?php
 require_once(dirname(__DIR__, 1).'/config/config.php');
-require_once('images.php');
 session_start();
  
 if (!empty($_FILES)) {
@@ -24,8 +23,7 @@ if (!empty($_FILES)) {
             if($count === 0){
                 $query = $db->query("insert into images(image_path) values('$fileName')");
                 // установка изображения слайдера загруженным изображением
-                $files = getImages();
-                $index = array_search($fileName, $files);
+                $index = array_search($fileName, $imageModel->getImages());
                 file_put_contents(IMAGE_INDEX_FILE, "index = $index;");
             }
             else{

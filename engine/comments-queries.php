@@ -1,13 +1,12 @@
 <?php
 // Отлавливает запросы, связанные с комментариями
 require_once(dirname(__DIR__, 1).'/config/config.php');
-require_once('images.php');
 
 // список комментариев
 if(isset($_GET['comments'])){
-    $curImage = getCurrentImage();
+    $curImage = $imageModel->getCurrentImage();
     if(!is_null($curImage)){
-        $comments = $cmtModel->getComments(getCurrentImage());
+        $comments = $cmtModel->getComments($curImage);
         echo json_encode($comments);
     }
     else {
@@ -18,7 +17,7 @@ if(isset($_GET['comments'])){
 // добавление комментария
 // имя текущего изображения берется с сервера, т.к. у IMG русское название некорректно
 if(isset($_POST['newcmt'])){
-    echo $cmtModel->addComment(getCurrentImage(), $_POST['text'],  $_POST['author'], $_POST['date']); 
+    echo $cmtModel->addComment($imageModel->getCurrentImage(), $_POST['text'],  $_POST['author'], $_POST['date']); 
 }
 
 // удаление комментария

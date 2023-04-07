@@ -2,7 +2,7 @@
  * type: 1 - кнопка вперед, 0 - кнопка назад, 2 - текущее изображение
  */ 
 function setChangeFrontImage(type=2){
-    return () => fetch(`../../engine/images.php?id=true&type=${type}`).then(response => response.text()).then(data => {
+    return () => fetch(`../../engine/change-front-image.php?type=${type}`).then(response => response.text()).then(data => {
         document.querySelector('.gallery__pane').src = data !== '' ? '../../data/img/'+data : '';
         document.querySelector('.cmt-container__list').querySelectorAll('.cmt-container__cmt').forEach(elem => elem.remove());
         showComments();
