@@ -18,19 +18,11 @@ if (!empty($_FILES)) {
         if (!move_uploaded_file($_FILES['files']['tmp_name'][0], $filePath)) {
             $_SESSION['error'] = "$fileName: Ошибка загрузки файла";
         }
-        else{
-            // соединение с БД
-            try{
-                $dbConnection = new PDO("mysql:dbname=".NAME_DB."; host=".HOST_DB, USER_DB, PASS_DB);
-            }
-            catch(PDOException $e){
-                die($e->getMessage());
-            }
-    
-            $query = $dbConnection->query("select count(*) as count from images where image_path='$fileName'");
+        else{ 
+            $query = $db->query("select count(*) as count from images where image_path='$fileName'");
             $count = intval($query->fetch(PDO::FETCH_ASSOC)['count']);
             if($count === 0){
-                $query = $dbConnection->query("insert into images(image_path) values('$fileName')");
+                $query = $db->query("insert into images(image_path) values('$fileName')");
                 // установка изображения слайдера загруженным изображением
                 $files = getImages();
                 $index = array_search($fileName, $files);
@@ -39,8 +31,6 @@ if (!empty($_FILES)) {
             else{
                 $_SESSION['error'] = "$fileName: файл уже существует";
             }
-    
-            $dbConnection = null;
         }
     }
     
