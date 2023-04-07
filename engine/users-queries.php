@@ -50,14 +50,15 @@ if(isset($_POST['newLogin'])){
         $_SESSION['error'] = "Логин должен быть не меньше 3-х символов и не больше 30";
     }
     elseif($usersModel->existsUser($newLogin)){
-        $_SESSION['error'] = "Пользователь с таким логином уже существует";
+        $_SESSION['error'] = " $newLogin уже существует";
     }
     // добавление пользователя
     else{
         $password = md5(md5(trim($newPass)));
-        $usersModel->addUser($newLogin, $password); 
+        $rslt = $usersModel->addUser($newLogin, $password); 
         logIn($usersModel, $newLogin);
-        $rslt = 'auth';
+        if($rslt === 1) $rslt = 'auth';
+        else $_SESSION['error'] = " $newLogin: ошибка добавления пользователя";
     }
     // редирект
     if(isset($_SESSION['error'])) 
