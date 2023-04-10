@@ -9,6 +9,7 @@ if(resetBtn){
     resetBtn.addEventListener('click', ()=>{
         filenameLabel.innerHTML = 'файл не выбран';
         fileNameInput.value = '';
+        filenameLabel.classList.remove('custom-file__filename_error');
     });
 }
 
@@ -43,7 +44,7 @@ formElem.addEventListener('submit', function(e){
         fetch('../../engine/upload_files.php', {method: 'POST', body: data}).then(r=>r.text()).then(data=>{
             if(data === 'OK'){
                 setChangeFrontImage()();
-                filenameLabel.innerHTML = '';
+                filenameLabel.innerHTML = 'Файл не выбран';
                 uploadSection.classList.remove('modal_active');
             }
             else{ 
