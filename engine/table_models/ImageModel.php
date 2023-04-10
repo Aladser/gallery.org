@@ -37,7 +37,9 @@ class ImageModel extends TableDBModel{
                 $index = array_search($fileName, $this->getImages());
                 file_put_contents(IMAGE_INDEX_FILE, "index = $index;");
             }
+            return $rslt;
         }
+        return -1;
     }
 
     function deleteImage($filename){

@@ -2,7 +2,7 @@
     position: absolute;
     visibility: hidden;
     opacity: 0;
-    transition: .3s;
+    transition: .5s;
   
     top: -1000px;
     right: 0;
@@ -53,4 +53,7 @@
     height: 2rem;
     width: 2rem;
   }
-  .modal__closeBtn:hover{opacity: 0.5;}
+  
+  .modal__closeBtn:hover{
+    opacity: 0.5;
+  }

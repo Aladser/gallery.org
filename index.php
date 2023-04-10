@@ -31,7 +31,7 @@
         <img class='gallery__pane'>
         <div class='gallery__next-btn' title='следующее изображение'>&#9002;</div>
         <?php if(isset($_SESSION['auth'])): ?>
-            <input type="button" class='gallery-btn gallery__add-btn' value="Добавить" title='добавить изображение'>
+            <input type="button" class='gallery-btn gallery__add-btn' id='gallery__addImgBtn' value="Добавить" title='добавить изображение'>
             <input type="button" class='gallery-btn gallery__delete-btn' value="Удалить" title='удалить текущее изображение'>
         <?php endif; ?>
     </container>
@@ -49,7 +49,11 @@
         <?php endif; ?>
     </container>
 
-    <?php require_once('views/login_view.php'); ?>
+    <?php 
+        require_once('views/login_view.php'); 
+        require_once('views/upload_file_view.php');
+        //var_dump($_SESSION);
+    ?>
     <script type='text/javascript' src='public_html/js/login.js'></script>
     <script type='text/javascript' src='public_html/js/images.js'></script>
     <script type='text/javascript' src='public_html/js/comments.js'></script>

@@ -69,3 +69,7 @@
 .custom-file__filename{
     padding: 0.75rem 0 0 0;
 }
+.custom-file__filename_error{
+    color: red;
+    font-weight: bold;
+}

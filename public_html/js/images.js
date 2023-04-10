@@ -12,14 +12,6 @@ setChangeFrontImage()();
 document.querySelector('.gallery__prev-btn').addEventListener('click', setChangeFrontImage(0));
 document.querySelector('.gallery__next-btn').addEventListener('click', setChangeFrontImage(1));
 
-// добавление изображения
-const addBtn = document.querySelector('.gallery__add-btn');
-if(addBtn){
-    addBtn.addEventListener('click', ()=>{
-        location.href = '../../views/upload_file_view.php';
-    });
-}
-
 // удаление изображения
 const deleteBtn = document.querySelector('.gallery__delete-btn');
 if(deleteBtn){

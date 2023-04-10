@@ -2,7 +2,7 @@
 
 require_once(dirname(__DIR__, 1).'/config/config.php');
 session_start();
- 
+
 // загрузка изображения
 if (!empty($_FILES)) {
     $fileName = $_FILES['files']['name'][0];
@@ -20,15 +20,21 @@ if (!empty($_FILES)) {
             $_SESSION['error'] = "$fileName: Ошибка загрузки файла";
         }
         else{ 
-            $imageModel->addImage($fileName);
+            $rslt = $imageModel->addImage($fileName);
+            if($rslt == 0) 
+                $_SESSION['error'] = 'Ошибка добавления файла в БД';
+            else if($rslt == -1)
+                $_SESSION['error'] = "$fileName: файл уже существует";
         }
     }
     
     // редирект
-    if(isset($_SESSION['error'])) 
-        header('Location: ../views/upload_file_view.php');
+    if(isset($_SESSION['error'])) {
+        echo $_SESSION['error'];
+        unset($_SESSION['error']);
+    }
     else
-        header('Location: ../index.php');
+        echo "OK";
 }
  
 ?>
