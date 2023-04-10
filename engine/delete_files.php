@@ -5,6 +5,7 @@
     if($_GET['delete']){
         if(!is_null($imageModel->getImages())){
             $filename = basename($_GET['file']);
+            $cmtModel->deleteComments($filename);
             echo $imageModel->deleteImage($filename);
         }
         else {

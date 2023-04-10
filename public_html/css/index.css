@@ -17,10 +17,16 @@ body{
     height: 2rem;
     width: 6rem;
 }
-
 .gallery-btn:hover{
     color: white;
     background-color: rgb(58, 179, 249);
+}
+
+.gallery__img-btn{
+    font-size: 2rem;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 10%;
 }
 
 .gallery__add-btn{
@@ -31,7 +37,7 @@ body{
 
 .gallery__delete-btn{
     position: absolute;
-    top: 2rem;
+    top: 3rem;
     left: -6.5rem;
 }
 

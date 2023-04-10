@@ -31,8 +31,8 @@
         <img class='gallery__pane'>
         <div class='gallery__next-btn' title='следующее изображение'>&#9002;</div>
         <?php if(isset($_SESSION['auth'])): ?>
-            <input type="button" class='gallery-btn gallery__add-btn' id='gallery__addImgBtn' value="Добавить" title='добавить изображение'>
-            <input type="button" class='gallery-btn gallery__delete-btn' value="Удалить" title='удалить текущее изображение'>
+            <input type="button" class='gallery-btn gallery__img-btn gallery__add-btn' id='gallery__addImgBtn' value="+" title='добавить изображение'>
+            <input type="button" class='gallery-btn gallery__img-btn gallery__delete-btn' value="-" title='удалить текущее изображение'>
         <?php endif; ?>
     </container>
 
