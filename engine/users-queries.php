@@ -17,20 +17,24 @@ function logIn($usersModel, $login){
 // аутентификация
 if(isset($_POST['auth']))
 {
-    $login = $_POST['login'];
-    if($usersModel->existsUser($login))
-    {
-        $password = $_POST['password'];
-        if($usersModel->isAuthorization($login, $password)){
-            logIn($usersModel, $login);
-            $rslt = 'auth';
+    if($_POST['token'] === $_SESSION['CSRF']){
+        $login = $_POST['login'];
+        if($usersModel->existsUser($login))
+        {
+            if($usersModel->isAuthorization($login, $_POST['password'])){
+                logIn($usersModel, $login);
+                $rslt = 'auth';
+            }
+            else {
+                $rslt = 'wrongpass';
+            }
         }
         else {
-            $rslt = 'wrongpass';
+            $rslt = 'nouser';
         }
     }
-    else {
-        $rslt = 'nouser';
+    else{
+        $rslt = 'bootforce';
     }
     echo $rslt;
 }

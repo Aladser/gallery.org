@@ -47,6 +47,8 @@
     margin-top: -0.8rem;
     text-align: center;
     color: red;
+    padding: 0.3rem;
+    font-weight: bold;
 }
 
 .loginWindow__input{
