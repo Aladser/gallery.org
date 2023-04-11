@@ -4,7 +4,7 @@
 
 .loginWindow{
     width: 26rem;
-    height: 13rem;
+    height: 15rem;
 }
 
 .loginWindow__formRow{
@@ -53,4 +53,10 @@
 
 .loginWindow__input{
     padding: 0.2rem;
+}
+
+.loginWindow__saveAuth{
+    padding: 0;
+    margin: 0;
+    margin-bottom: 1rem;
 }

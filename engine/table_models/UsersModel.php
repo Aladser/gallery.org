@@ -11,14 +11,14 @@ class UsersModel extends TableDBModel{
 
     // проверка авторизации
     function isAuthentication($user, $password){
-        $password = md5(md5($password));
-        $query = $this->db->query("select count(*) as count from users where user_login = '$user' and user_password='$password'");
-        $count = $query->fetch(PDO::FETCH_ASSOC)['count'];
-        return intval($count) === 1;
+        $query = $this->db->query("select user_password from users where user_login='$user'");
+        $passhash = $query->fetch(PDO::FETCH_ASSOC)['user_password'];
+        return password_verify($password, $passhash);
     }
     
     // добавить нового пользователя
     function addUser($login, $password){
+        $password = password_hash($password, PASSWORD_DEFAULT);
         return $this->db->exec("insert into users(user_login, user_password) values('$login', '$password')");
     }
 

@@ -7,4 +7,6 @@ p{
     margin: 0;
 }
 
-.hidden{visibility: hidden;}
+.hidden{
+    display: none;
+}

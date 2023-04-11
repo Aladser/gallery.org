@@ -4,12 +4,14 @@ require_once(dirname(__DIR__, 1).'/config/config.php');
 session_start();
 
 // авторизация
-function logIn($usersModel, $login){
+function logIn($usersModel, $login, $saveAuth=false){
     // добавить хэш пользователю
     $usersModel->addUserHash($login); 
     // Ставим куки
-    setcookie('login', $login, time()+60*60*24, '/');
-    setcookie('hash', $usersModel->getUserHash($login), time()+60*60*24, '/');
+    if($saveAuth){
+        setcookie('login', $login, time()+60*60*24, '/');
+        setcookie('hash', $usersModel->getUserHash($login), time()+60*60*24, '/');
+    }
     $_SESSION['auth'] = 1;
     $_SESSION['login'] = $login;
 }
@@ -22,7 +24,8 @@ if(isset($_POST['auth']))
         if($usersModel->existsUser($login))
         {
             if($usersModel->isAuthentication($login, $_POST['password'])){
-                logIn($usersModel, $login);
+                $saveAuth = isset($_POST['saveAuth']) ? true : false;
+                logIn($usersModel, $login, $saveAuth);
                 $rslt = 'auth';
             }
             else {
@@ -57,8 +60,7 @@ if(isset($_POST['newLogin'])){
     }
     // добавление пользователя
     else{
-        $password = md5(md5(trim($newPass)));
-        $rslt = $usersModel->addUser($newLogin, $password); 
+        $rslt = $usersModel->addUser($newLogin, $newPass); 
         logIn($usersModel, $newLogin);
         if($rslt === 1) $rslt = 'auth';
         else $_SESSION['error'] = " $newLogin: ошибка добавления пользователя";
