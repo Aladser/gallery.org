@@ -6,11 +6,11 @@
         <input type='button' class='modal__closeBtn loginWindow__closeBtn' value='x'> 
         <div class='loginWindow__formRow'>
             <label for="loginInput" class='loginWindow__label'>Логин:</label>
-            <input type='text' class='loginWindow__input loginWindow__loginInput' name='login' id='loginInput' autocomplete='on' value ='user' >
+            <input type='text' class='loginWindow__input loginWindow__loginInput' name='login' id='loginInput' autocomplete='on' value ='user' placeholder="Логин">
         </div> 
         <div class='loginWindow__formRow'>
             <label for="passwordInput" class='loginWindow__label'>Пароль:</label>
-            <input type="password" class='loginWindow__input loginWindow__passwordInput' name='password' id='passwordInput' autocomplete='off' value= 'user'>
+            <input type="password" class='loginWindow__input loginWindow__passwordInput' name='password' id='passwordInput' autocomplete='off' value= 'user' placeholder="Пароль">
         </div>
         
         <div class='loginWindow__formRow loginWindow__btnRow'> 

@@ -3,6 +3,29 @@ body{
     position: relative;
 }
 
+.gallery-container{
+    display: flex;
+    width: 63rem;
+    margin: auto;
+}
+
+.gallery{
+    margin: auto;
+    width: 60rem;
+    height: 30rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border: 1px solid rgb(219, 219, 219);
+}
+
+.gallery__img-btns{
+    display: block;
+    width: 3rem;
+    margin: 0.1rem;
+}
+
 .gallery-header{
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color:rgb(58, 179, 249);
@@ -27,18 +50,7 @@ body{
     height: 2.5rem;
     width: 2.5rem;
     border-radius: 10%;
-}
-
-.gallery__add-btn{
-    position: absolute;
-    top: 0;
-    left: -6.5rem;
-}
-
-.gallery__delete-btn{
-    position: absolute;
-    top: 3rem;
-    left: -6.5rem;
+    margin-bottom: 0.2rem;
 }
 
 .gallery-btn:active{
@@ -67,17 +79,6 @@ body{
     justify-content: center;
     align-items: center;
     cursor: default;
-}
-
-.gallery{
-    margin: auto;
-    width: 60rem;
-    height: 30rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    border: 1px solid rgb(158, 219, 255);
 }
 
 .gallery__pane{

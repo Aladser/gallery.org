@@ -1,3 +1,7 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .loginWindow{
     width: 26rem;
     height: 13rem;
@@ -45,3 +49,6 @@
     color: red;
 }
 
+.loginWindow__input{
+    padding: 0.2rem;
+}

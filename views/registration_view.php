@@ -17,11 +17,11 @@
             <h3 class='newUserForm__header'>Регистрация нового пользователя</h3>
             <div class='newUserForm__row'>
                 <p class='newUserForm__label'>Логин:</p>
-                <input type="text" id='newUserForm__loginInput' name='newLogin'>
+                <input type="text" id='newUserForm__loginInput' class='newUserForm__input' name='newLogin' placeholder="Логин">
             </div>
             <div class='newUserForm__row'>
                 <p class='newUserForm__label'>Пароль:</p>
-                <input type="password" id='newUserForm__passwordInput' name='newPassword'>
+                <input type="password" id='newUserForm__passwordInput' class='newUserForm__input' name='newPassword' placeholder="Пароль">
             </div>
             <div class='newUserForm__row newUserForm__btnrow'>
                 <input type="submit" class='newUserForm__btn newUserForm__regBtn' value="Регистрация" disabled>

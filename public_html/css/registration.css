@@ -39,7 +39,10 @@
     font-weight: bolder;
 }
 
-.newUserForm__label{width: 3vw;}
+.newUserForm__label{
+    padding-right: 0.2rem;
+    width: 3vw;
+}
 
 .newUserForm__btn{
     cursor: pointer;
@@ -51,6 +54,10 @@
 }
 .newUserForm__btn:disabled{
     cursor: default;
+}
+
+.newUserForm__input{
+    padding: 0.2rem;
 }
 
 .newUserForm__btn:hover:not(:disabled){opacity: 0.5;}
