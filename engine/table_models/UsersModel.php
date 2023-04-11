@@ -10,7 +10,7 @@ class UsersModel extends TableDBModel{
     }
 
     // проверка авторизации
-    function isAuthorization($user, $password){
+    function isAuthentication($user, $password){
         $password = md5(md5($password));
         $query = $this->db->query("select count(*) as count from users where user_login = '$user' and user_password='$password'");
         $count = $query->fetch(PDO::FETCH_ASSOC)['count'];
@@ -24,7 +24,7 @@ class UsersModel extends TableDBModel{
 
     // добавить хэш пользователю
     function addUserHash($login){
-        $hash = UsersModel::generateCode();
+        $hash = self::generateCode();
         $this->db->query("UPDATE users SET user_hash='$hash' WHERE user_login='$login'");
     }
 
@@ -33,6 +33,12 @@ class UsersModel extends TableDBModel{
         $query = $this->db->query("select user_hash from users where user_login = '$login'");
         $hash = $query->fetch(PDO::FETCH_ASSOC)['user_hash'];
         return $hash;
+    }
+
+    function checkUserHash($login, $hash){
+        $query = $this->db->query("select count(*) as count from users where user_login = '$login' and user_hash='$hash'");
+        $hash = $query->fetch(PDO::FETCH_ASSOC)['count'];
+        return intval($hash) === 1;
     }
 
     // генерация случайной строки

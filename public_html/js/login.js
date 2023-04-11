@@ -17,6 +17,7 @@ document.querySelector('#loginWindow__form').addEventListener('submit', function
     e.preventDefault();
     let form = new FormData(this);
     fetch('../engine/users-queries.php', {method: 'POST', body: form}).then(response => response.text()).then(data => {
+        console.log(data);
         if(data !== 'auth') {
             loginWindowError.classList.remove('hidden');
             if(data === 'wrongpass') loginWindowError.innerHTML = 'Неверный пароль';

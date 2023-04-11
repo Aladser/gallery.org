@@ -1,6 +1,21 @@
 <?php 
     require_once('config/config.php');
     session_start();
+    // проверка куки
+    $auth = $_SESSION['auth'] ?? null;
+    if(is_null($auth)){
+        $cookieLogin = $_COOKIE["login"] ?? null;
+        $cookieHash = $_COOKIE["hash"] ?? null;
+        if(!is_null($cookieLogin) && !is_null($cookieHash)){
+            if($usersModel->checkUserHash($cookieLogin, $cookieHash)){
+                $user = $cookieLogin;
+                $_SESSION['auth'] = 1;
+            }
+        }
+    }
+    else{
+        $user = $_SESSION['login'];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +36,7 @@
     <!-- кнопка войти-выйти -->
     <?php if(isset($_SESSION['auth'])): ?>
         <input type="button" class='gallery-btn gallery__login-btn' id='login-btn' value='Выйти'>
-        <div class='gallery-login-name'><?=$_SESSION['login']?></div>
+        <div class='gallery-login-name'><?=$user?></div>
     <?php else: ?>
         <input type="button" class='gallery-btn gallery__login-btn' id='login-btn' value='Войти'>
     <?php endif; ?>

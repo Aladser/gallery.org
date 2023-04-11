@@ -8,8 +8,8 @@ function logIn($usersModel, $login){
     // добавить хэш пользователю
     $usersModel->addUserHash($login); 
     // Ставим куки
-    setcookie('login', $login, time()+60*60*24);
-    setcookie('hash', $usersModel->getUserHash($login), time()+60*60*24);
+    setcookie('login', $login, time()+60*60*24, '/');
+    setcookie('hash', $usersModel->getUserHash($login), time()+60*60*24, '/');
     $_SESSION['auth'] = 1;
     $_SESSION['login'] = $login;
 }
@@ -21,7 +21,7 @@ if(isset($_POST['auth']))
         $login = $_POST['login'];
         if($usersModel->existsUser($login))
         {
-            if($usersModel->isAuthorization($login, $_POST['password'])){
+            if($usersModel->isAuthentication($login, $_POST['password'])){
                 logIn($usersModel, $login);
                 $rslt = 'auth';
             }
@@ -74,7 +74,7 @@ if(isset($_POST['newLogin'])){
 // Выход
 if(isset($_GET['logout'])){
     unset($_SESSION['auth']);
-    setcookie("login", "", time()-3600);
-    setcookie("hash", "", time()-3600);
+    setcookie("login", "", time()-3600, '/');
+    setcookie("hash", "", time()-3600, '/');
     header('Location: ../index.php');
 }
