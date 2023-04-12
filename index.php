@@ -32,14 +32,16 @@
     <link rel="stylesheet" href="public_html/css/comments.css">
 </head>
 <body>
-    <h2 class='gallery-header'>Галерея</h2>
-    <!-- кнопка войти-выйти -->
-    <?php if(isset($_SESSION['auth'])): ?>
-        <input type="button" class='gallery-btn gallery__login-btn' id='login-btn' value='Выйти'>
-        <div class='gallery-login-name'><?=$user?></div>
-    <?php else: ?>
-        <input type="button" class='gallery-btn gallery__login-btn' id='login-btn' value='Войти'>
-    <?php endif; ?>
+    <header class='header'>
+        <h2 class='gallery-header'>Галерея</h2>
+        <!-- кнопка войти-выйти -->
+        <?php if(isset($_SESSION['auth'])): ?>
+            <input type="button" class='gallery-btn gallery__login-btn' id='login-btn' value='Выйти'>
+            <div class='gallery-login-name'><?=$user?></div>
+        <?php else: ?>
+            <input type="button" class='gallery-btn gallery__login-btn' id='login-btn' value='Войти'>
+        <?php endif; ?>
+    </header>
 
     <container class='gallery-container'>
         <?php if(isset($_SESSION['auth'])): ?>
