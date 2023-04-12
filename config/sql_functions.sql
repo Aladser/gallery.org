@@ -22,3 +22,11 @@ CREATE table comments(
 );
 alter table comments add column cmt_author varchar(50) references users(user_login);
 alter table comments modify column cmt_date datetime;
+-- роли пользователей
+create table user_roles(
+	id int auto_increment primary key,
+	name varchar(30) not null
+);
+alter table user_roles add constraint uniq_name unique(name);
+alter table users change role_id user_role_id int;
+alter table users add constraint fk_role_id foreign key(user_role_id) references user_roles(id);
