@@ -20,7 +20,7 @@
                 <input type='button' class='gallery-btn' id='loginWindow__regBtn' value='Регистрация'>            
             </div>
 
-            <input type="checkbox" id="loginWindow__saveAuth" class='loginWindow__saveAuth' name="saveAuth"/>
+            <input type="checkbox" id="loginWindow__saveAuth" class='loginWindow__saveAuth' name="saveAuth" checked/>
             
             <label for="loginWindow__saveAuth">Запомнить меня</label>
             <div class='loginWindow__error hidden'>Ошибка</div>
