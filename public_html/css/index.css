@@ -50,7 +50,7 @@ body{
     color: rgb(58, 179, 249);
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     height: 3rem;
-    width: 6rem;
+    width: 10rem;
     cursor: default;
 
     display: flex;
@@ -60,6 +60,16 @@ body{
     position: absolute;
     top: 0;
     right: 6rem;
+}
+.header__users-btn{
+    position: absolute;
+    top: 0;
+    right: 16rem;
+    height: 3rem;
+    width: 8rem;
+    border: none;
+    border-left: 1px solid rgb(58, 179, 249);
+    border-right: 1px solid rgb(58, 179, 249);
 }
 
 .gallery-container{

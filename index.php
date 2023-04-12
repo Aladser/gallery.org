@@ -3,23 +3,30 @@
     session_start();
     // проверка куки
     $auth = $_SESSION['auth'] ?? null;
+    $userRole = null;
     if(is_null($auth)){
         $cookieLogin = $_COOKIE["login"] ?? null;
         $cookieHash = $_COOKIE["hash"] ?? null;
         if(!is_null($cookieLogin) && !is_null($cookieHash)){
             if($usersModel->checkUserHash($cookieLogin, $cookieHash)){
                 $user = $cookieLogin;
+                $_SESSION['login'] = $cookieLogin;
+                $_SESSION['hash'] = $cookieHash;
+                $userRole = $usersModel->getUserRole($cookieLogin);
                 $_SESSION['auth'] = 1;
             }
         }
     }
-    else{
+    else if(isset($_SESSION['login'])){
         $user = $_SESSION['login'];
+        $userRole = $usersModel->getUserRole($user);
     }
+    //var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,6 +38,7 @@
     <link rel="stylesheet" href="public_html/css/modal.css">
     <link rel="stylesheet" href="public_html/css/comments.css">
 </head>
+
 <body>
     <header class='header'>
         <p class='header__title'>Галерея</p>
@@ -40,6 +48,10 @@
             <div class='header__username' id='header__username'><?=$user?></div>
         <?php else: ?>
             <input type="button" class='gallery-btn header__login-btn' id='login-btn' value='Войти'>
+        <?php endif; ?>
+
+        <?php if($userRole === 'admin'): ?>
+            <input type="button" class='gallery-btn header__users-btn' value='Пользователи'>
         <?php endif; ?>
     </header>
 
@@ -78,4 +90,5 @@
     <script type='text/javascript' src='public_html/js/images.js'></script>
     <script type='text/javascript' src='public_html/js/comments.js'></script>
 </body>
+
 </html>
