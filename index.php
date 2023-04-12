@@ -33,13 +33,13 @@
 </head>
 <body>
     <header class='header'>
-        <h2 class='gallery-header'>Галерея</h2>
+        <p class='header__title'>Галерея</p>
         <!-- кнопка войти-выйти -->
         <?php if(isset($_SESSION['auth'])): ?>
-            <input type="button" class='gallery-btn gallery__login-btn' id='login-btn' value='Выйти'>
-            <div class='gallery-login-name'><?=$user?></div>
+            <input type="button" class='gallery-btn header__login-btn' id='login-btn' value='Выйти'>
+            <div class='header__username' id='header__username'><?=$user?></div>
         <?php else: ?>
-            <input type="button" class='gallery-btn gallery__login-btn' id='login-btn' value='Войти'>
+            <input type="button" class='gallery-btn header__login-btn' id='login-btn' value='Войти'>
         <?php endif; ?>
     </header>
 

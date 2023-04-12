@@ -16,7 +16,7 @@ function addComment(text, author, date){
     dateElem.innerHTML = date;
 
     // кнопка удаления комментария
-    let loginNameLabel = document.querySelector('.gallery-login-name'); // поле отображения имени пользователя
+    let loginNameLabel = document.querySelector('#header__username'); // поле отображения имени пользователя
     if(loginNameLabel){
         if(loginNameLabel.innerHTML === author){
             let btn = document.createElement('button');
@@ -59,7 +59,7 @@ function setDeleteParentComment(elem){
 const sendNewCmtForm =  document.querySelector('#cmt-container__form');
 if(sendNewCmtForm){
     let newCmt = document.querySelector('#cmt-container__new-cmt');
-    let author =  document.querySelector('.gallery-login-name');
+    let author =  document.querySelector('#header__username');
     sendNewCmtForm.addEventListener('submit', e => {
         if(newCmt.value !== ''){
             e.preventDefault();

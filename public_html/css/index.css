@@ -2,6 +2,65 @@ body{
     text-align: center;
     position: relative;
 }
+/* кнопка */
+.gallery-btn{
+    background-color: white;
+    color: rgb(58, 179, 249);
+    border: 1px solid rgb(58, 179, 249);
+    cursor: pointer;
+    height: 2rem;
+    width: 6rem;
+}
+.gallery-btn:hover{
+    color: white;
+    background-color: rgb(58, 179, 249);
+}
+.gallery-btn:active{
+    cursor: default;
+    background-color: white;
+    color: rgb(58, 179, 249);
+}
+/* header */
+.header{
+    margin-bottom: 1rem;
+    position: relative;
+    height: 3rem;
+    border-top: 1px solid rgb(58, 179, 249);
+    border-bottom: 1px solid rgb(58, 179, 249);
+}
+.header__title{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 2rem;
+    color:rgb(58, 179, 249);
+    width: 7rem;
+    height: 3rem;
+    padding: 0 3rem;
+    padding-top: 0.25rem;
+}
+.header__login-btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 3rem;
+    width: 6rem;
+    border:none;
+    border-left: 1px solid rgb(58, 179, 249);
+}
+.header__username{
+    color: rgb(58, 179, 249);
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    height: 3rem;
+    width: 6rem;
+    cursor: default;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    top: 0;
+    right: 6rem;
+}
 
 .gallery-container{
     display: flex;
@@ -26,59 +85,12 @@ body{
     margin: 0.1rem;
 }
 
-.gallery-header{
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color:rgb(58, 179, 249);
-    margin-top: 1rem;
-}
-
-.gallery-btn{
-    background-color: white;
-    color: rgb(58, 179, 249);
-    border: 1px solid rgb(58, 179, 249);
-    cursor: pointer;
-    height: 2rem;
-    width: 6rem;
-}
-.gallery-btn:hover{
-    color: white;
-    background-color: rgb(58, 179, 249);
-}
-
 .gallery__img-btn{
     font-size: 2rem;
     height: 2.5rem;
     width: 2.5rem;
     border-radius: 10%;
     margin-bottom: 0.2rem;
-}
-
-.gallery-btn:active{
-    cursor: default;
-    background-color: white;
-    color: rgb(58, 179, 249);
-}
-
-.gallery__login-btn{
-    position: absolute;
-    top: 0;
-    left: 1rem;
-}
-
-.gallery-login-name{
-    position: absolute;
-    top: 0rem;
-    left: 7rem;
-    border: 1px solid rgb(58, 179, 249);
-    border-left: none;
-    color: rgb(58, 179, 249);
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    height: 1.9rem;
-    width: 6rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: default;
 }
 
 .gallery__pane{

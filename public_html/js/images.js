@@ -15,7 +15,7 @@ document.querySelector('.gallery__next-btn').addEventListener('click', setChange
 // удаление изображения
 const deleteBtn = document.querySelector('.gallery__delete-btn');
 if(deleteBtn){
-    let user = document.querySelector('.gallery-login-name').innerHTML;
+    let user = document.querySelector('#header__username').innerHTML;
     deleteBtn.addEventListener('click', ()=>{
         let file = document.querySelector('.gallery__pane').src;
         fetch(`../../engine/delete_files.php?delete=1&file=${file}&user=${user}`).then(r=>r.text()).then(data=>{
