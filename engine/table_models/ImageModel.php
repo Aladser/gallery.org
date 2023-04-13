@@ -1,6 +1,6 @@
 <?php
 
-class ImageModel extends TableDBModel{
+class ImageModel extends \galleryModels\TableDBModel{
     private $upload_files;
     private $image_index_file;
 

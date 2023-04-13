@@ -1,4 +1,5 @@
 <?php
+namespace galleryModels;
 
 // Класс модели таблицы БД
 class TableDBModel{

@@ -1,7 +1,7 @@
 <?php
 require_once('TableDBModel.php');
 
-class UsersModel extends TableDBModel{
+class UsersModel extends \galleryModels\TableDBModel{
     // проверить существование пользователя
     function existsUser($user){
         $query = $this->db->query("select count(*) as count from users where user_login = '$user'");

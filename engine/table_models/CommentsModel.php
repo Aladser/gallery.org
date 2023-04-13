@@ -1,7 +1,7 @@
 <?php
 require_once('TableDBModel.php');
 
-class CommentsModel extends TableDBModel{
+class CommentsModel extends \galleryModels\TableDBModel{
     function getComments($image){
         $query = $this->db->query("select image_id from images where image_path='$image'");
         $id = $query->fetch(PDO::FETCH_ASSOC)['image_id'];
