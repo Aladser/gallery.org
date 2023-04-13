@@ -1,10 +1,9 @@
 .upload-container{
     display: block;
-    height: 14rem;
+    height: 15rem;
     width: 30rem;
 
     border: 1px solid rgb(58, 179, 249);
-    padding: 1rem;
     white-space: normal;
     margin: auto;
 }
@@ -16,6 +15,7 @@
 
 .upload-container__header{
     margin: 0;
+    margin-top: 1.5rem;
     padding: 0;
     padding-bottom: 0.75rem;
 }

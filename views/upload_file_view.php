@@ -13,7 +13,7 @@
                 <br>
                 <input type="file" name="files[]" id="customFile">
             </label>
-            <p class='custom-file__filename'>Файл не выбран</p>
+            <p class='custom-file__filename'>файл не выбран</p>
             <hr>
             <small>
                 Максимальный размер файла: <?php echo UPLOAD_MAX_SIZE / 1000000; ?>Мб.
@@ -28,5 +28,3 @@
 
 </container>
 </section>
-
-<script type='text/javascript' src='../public_html/js/upload_files.js'></script>
