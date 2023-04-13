@@ -1,6 +1,8 @@
 <?php
+namespace table_models;
+use \PDO;
 
-class ImageModel extends \galleryModels\TableDBModel{
+class ImageModel extends TableDBModel{
     private $upload_files;
     private $image_index_file;
 

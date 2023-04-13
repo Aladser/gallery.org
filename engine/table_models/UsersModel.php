@@ -1,7 +1,10 @@
 <?php
+namespace table_models;
+use \PDO;
+
 require_once('TableDBModel.php');
 
-class UsersModel extends \galleryModels\TableDBModel{
+class UsersModel extends TableDBModel{
     // проверить существование пользователя
     function existsUser($user){
         $query = $this->db->query("select count(*) as count from users where user_login = '$user'");
