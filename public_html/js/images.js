@@ -18,9 +18,11 @@ if(deleteBtn){
     let user = document.querySelector('#header__username').innerHTML;
     deleteBtn.addEventListener('click', ()=>{
         let file = document.querySelector('.gallery__pane').src;
-        fetch(`../../engine/delete_files.php?delete=1&file=${file}&user=${user}`).then(r=>r.text()).then(data=>{
-            if(data === '1' || data === '-1') location.href = '../../index.php';
-            else alert(`ошибка удаления ${data}`);
-        });
+        if(file !== 'http://gallery.org/index.php'){
+            fetch(`../../engine/delete_files.php?delete=1&file=${file}&user=${user}`).then(r=>r.text()).then(data=>{
+                if(data === '1' || data === '-1') location.href = '../../index.php';
+                else alert(`ошибка удаления ${data}`);
+            });
+        }
     });
 }
