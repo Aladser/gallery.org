@@ -21,10 +21,6 @@
         $user = $_SESSION['login'];
         $userRole = $usersModel->getUserRole($user);
     }
-    
-    include 'views/login_view.php'; 
-    include 'views/upload_file_view.php';
-    include 'views/main_view.php';
 
     // лог запуска
     $today = date("Y-m-d H:i:s");
@@ -38,5 +34,9 @@
     $arr = file(LOGS);
     if(count($arr)> 100) unset($arr[0]);
     file_put_contents(LOGS, $arr);
+
+    include 'views/login_view.php'; 
+    include 'views/upload_file_view.php';
+    include 'views/main_view.php';
 ?>
 
