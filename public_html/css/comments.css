@@ -64,3 +64,11 @@
 .cmt-container__delete-btn:active{
     cursor: default;
 }
+
+/* масштабирование слайдера */
+@media(max-width: 1000px){
+    .cmt-container{
+        width: 95%;
+        height: auto;
+    }
+}
