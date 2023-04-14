@@ -1,55 +1,65 @@
-.registration-container{
-    border: 3px dotted grey;
-    width: 30rem;
-    margin: auto;
-    padding: 2rem;
-}
-
-.registration-container *{
-    font-family: Arial, Helvetica, sans-serif;
+*{
     margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-.registration-container__header{
+.registration-container{
+    margin-top: 3vh;
+}
+
+.newUserForm{
+    padding: 1rem 0;
+    border: 2px dotted rgb(58, 179, 249);
+    width: 33%;
+    margin: auto;
+}
+
+.newUserForm__header{
     text-align: center;
     padding-bottom: 1rem;
 }
 
-.newUserForm{
+.newUserForm__row{
+    width: 60%;
+    margin: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0.5rem 0;
+
+}
+.newUserForm__error{
+    padding: 1rem 0;
     text-align: center;
+    color: red;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
 }
 
-.newUserForm__input{
-    text-align: center;
-    padding: 0.25rem 0;
-    margin-bottom: 0.5rem;
-    width: 18rem;
+.newUserForm__label{
+    padding-right: 0.2rem;
+    width: 3vw;
 }
 
 .newUserForm__btn{
-    padding: 0.5rem;
-    width: 9rem;
-    background-color: white;
-    outline: none;
-    border: 1px solid grey;
     cursor: pointer;
+    background: none;
+    border: 1px solid black;
+
+    width: 5vw;
+    padding: 0.5rem;
 }
-.newUserForm__btn:hover{
-    background-color: rgb(220, 220, 220);
-}
-.newUserForm__btn:active{
-    background-color: white;
+.newUserForm__btn:disabled{
     cursor: default;
 }
 
-.newUserForm__error{
-    padding: 0;
-    padding-top: 1rem;
-    color: red;
+.newUserForm__input{
+    padding: 0.2rem;
 }
 
-@media (max-width:600px){
-    .registration-container{
-        width: 85vw;
-    }
-}
+.newUserForm__btn:hover:not(:disabled){opacity: 0.5;}
+.newUserForm__regBtn{margin-right: 1rem;}
+.newUserForm__backBtn{margin-left: 1rem;}

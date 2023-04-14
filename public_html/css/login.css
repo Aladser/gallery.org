@@ -4,6 +4,7 @@
 
 .loginWindow{
     width: 26rem;
+    height: 15rem;
 }
 
 .loginWindow__formRow{
@@ -46,8 +47,7 @@
     margin-top: -0.8rem;
     text-align: center;
     color: red;
-    padding: 0;
-    padding-top: 0.5rem;
+    padding: 0.3rem;
     font-weight: bold;
 }
 
@@ -59,11 +59,4 @@
     padding: 0;
     margin: 0;
     margin-bottom: 1rem;
-}
-
-.loginWindow__btn{
-    background-color: white;
-    cursor: pointer;
-    height: 2rem;
-    width: 6rem;
 }
