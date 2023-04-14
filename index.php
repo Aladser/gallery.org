@@ -34,7 +34,15 @@
     $arr = file(LOGS);
     if(count($arr)> 100) unset($arr[0]);
     file_put_contents(LOGS, $arr);
-
+?>
+    <link rel="stylesheet" href="public_html/css/reset_cs.css">
+    <link rel="stylesheet" href="public_html/css/index.css">
+    <link rel="stylesheet" href="../public_html/css/upload_files.css">
+    <link rel="stylesheet" href="../public_html/css/registration.css">
+    <link rel="stylesheet" href="public_html/css/login.css">
+    <link rel="stylesheet" href="public_html/css/modal.css">
+    <link rel="stylesheet" href="public_html/css/comments.css">
+<?php
     include 'views/login_view.php'; 
     include 'views/upload_file_view.php';
     include 'views/main_view.php';

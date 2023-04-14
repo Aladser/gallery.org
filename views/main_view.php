@@ -5,10 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Галерея</title>
-    <link rel="stylesheet" href="public_html/css/reset_cs.css">
-    <link rel="stylesheet" href="public_html/css/index.css">
-    <link rel="stylesheet" href="public_html/css/modal.css">
-    <link rel="stylesheet" href="public_html/css/comments.css">
 </head>
 
 <body>

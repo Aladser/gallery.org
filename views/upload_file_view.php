@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="../public_html/css/upload_files.css">
-
 <section id='uploadFilesSection' class='modal'>
 <container class='modalWindow upload-container'>
     <input type='button' class='modal__closeBtn' id='uploadWdw__closeBtn' value='x'> 

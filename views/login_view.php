@@ -1,6 +1,4 @@
 <!-- модальное окно входа -->
-<link rel="stylesheet" href="public_html/css/login.css">
-
 <section id='loginInputSection' class='modal'>
     <div class='modalWindow loginWindow'>
         <h3 class='modal__header'> Авторизация</h3>
