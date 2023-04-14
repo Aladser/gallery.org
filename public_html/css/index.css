@@ -22,6 +22,7 @@ body{
 }
 /* header */
 .header{
+    width: 100%;
     margin-bottom: 1rem;
     position: relative;
     height: 3rem;
@@ -92,13 +93,14 @@ body{
 .gallery__img-btns{
     display: block;
     width: 3rem;
+    height: 6rem;
     margin: 0.1rem;
 }
 
 .gallery__img-btn{
-    font-size: 2rem;
-    height: 2.5rem;
-    width: 2.5rem;
+    font-size: 150%;
+    height: 50%;
+    width: 100%;
     border-radius: 10%;
     margin-bottom: 0.2rem;
 }
@@ -139,4 +141,28 @@ body{
     position: absolute;
     top: 0;
     right: 0;
+}
+
+/* масштабирование слайдера */
+@media(max-width: 1000px){
+    .gallery-container{
+        width: 100%;
+        height: auto;
+    }
+    .gallery__pane{
+        width: 90%;
+        height: auto;
+    }
+    .gallery{
+        width: 95%;
+        height: auto;
+    }
+    .gallery__img-btns{
+        width: 5vw;
+        height: 10vw;
+    }
+}
+
+@media(max-width: 750px){
+
 }

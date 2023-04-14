@@ -42,7 +42,7 @@
     </container>
 
     <container class='cmt-container'>
-        <h4>Комментарии</h4>
+        <h4 class='cmt-container__header'>Комментарии</h4>
         <div class='cmt-container__list'>
 
         </div>
