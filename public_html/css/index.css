@@ -2,79 +2,6 @@ body{
     text-align: center;
     position: relative;
 }
-/* кнопка */
-.gallery-btn{
-    background-color: white;
-    color: rgb(58, 179, 249);
-    border: 1px solid rgb(58, 179, 249);
-    cursor: pointer;
-    height: 2rem;
-    width: 6rem;
-}
-.gallery-btn:hover{
-    color: white;
-    background-color: rgb(58, 179, 249);
-}
-.gallery-btn:active{
-    cursor: default;
-    background-color: white;
-    color: rgb(58, 179, 249);
-}
-/* header */
-.header{
-    width: 100%;
-    margin-bottom: 1rem;
-    position: relative;
-    height: 3rem;
-    border-top: 1px solid rgb(58, 179, 249);
-    border-bottom: 1px solid rgb(58, 179, 249);
-}
-.header__title{
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 2rem;
-    color:rgb(58, 179, 249);
-    width: 7rem;
-    height: 3rem;
-    padding: 0 3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.header__login-btn{
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 3rem;
-    width: 10%;
-    border:none;
-    border-left: 1px solid rgb(58, 179, 249);
-}
-.header__username{
-    color: rgb(58, 179, 249);
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    height: 3rem;
-    width: 10%;
-    cursor: default;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    position: absolute;
-    top: 0;
-    right: 10%;
-}
-.header__users-btn{
-    position: absolute;
-    top: 0;
-    right: 20%;
-    height: 3rem;
-    width: 10%;
-    border: none;
-    border-left: 1px solid rgb(58, 179, 249);
-    border-right: 1px solid rgb(58, 179, 249);
-    font-size: 1rem;
-}
 
 .gallery-container{
     display: flex;
@@ -163,31 +90,5 @@ body{
     .gallery__img-btns{
         width: 5vw;
         height: 10vw;
-    }
-}
-/*header */
-@media(max-width: 1200px){
-    .header__users-btn{
-        font-size: 80%;
-        right: 10rem+10%;
-    }
-}
-@media(max-width: 950px){
-    .header__login-btn{
-        width: 6rem;
-        font-size: 80%;
-    }
-    .header__username{
-        width: 8rem;
-        font-size: 80%;
-        right: 6rem;
-    }
-    .header__users-btn{
-        width: 6rem;
-        font-size: 80%;
-        right: 14rem;
-    }
-    .header__title{
-        font-size: 100%;
     }
 }

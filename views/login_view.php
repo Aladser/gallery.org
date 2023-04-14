@@ -16,8 +16,8 @@
             </div>
 
             <div class='loginWindow__formRow loginWindow__btnRow'> 
-                <input type='submit' class='gallery-btn' id='loginWindow__sendBtn' value='Войти'>
-                <input type='button' class='gallery-btn' id='loginWindow__regBtn' value='Регистрация'>            
+                <input type='submit' class='loginWindow__btn' id='loginWindow__sendBtn' value='Войти'>
+                <input type='button' class='loginWindow__btn' id='loginWindow__regBtn' value='Регистрация'>            
             </div>
 
             <input type="checkbox" id="loginWindow__saveAuth" class='loginWindow__saveAuth' name="saveAuth" checked/>
